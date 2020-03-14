@@ -1,0 +1,713 @@
+/*
+Theme Name: piikti
+Author: David DOGNIN
+Author URI: https://daviddognin.com
+Description: Mon premier thème !
+Requires at least: WordPress 5.0
+Version: 1.0
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: quatro, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #4D4D4D;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Quatro Bold font-family: quatro, sans-serif;
+font-weight: 700;
+font-style: normal;
+Quatro Bold Italic font-family: quatro, sans-serif;
+font-weight: 700;
+font-style: italic;
+Quatro Regular font-family: quatro, sans-serif;
+font-weight: 400;
+font-style: normal;
+Quatro Regular Italic font-family: quatro, sans-serif;
+font-weight: 400;
+font-style: italic; */
+body {
+    height: 100%;
+    position: relative;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.logoPiikti {
+    height: 90px !important;
+}
+
+.nav {
+    width: 50%;
+}
+
+.site__header__menu {
+    float: left;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+    height: 100%;
+}
+
+.site__header__menu a {
+    color: #4D4D4D;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-family: quatro, sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 3rem;
+    border-bottom: solid #ee6e6b;
+}
+
+.info-connexion {
+    position: absolute;
+    z-index: 9999;
+    right: 190px;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logoUser, .logoCaddie {
+    height: 40px !important;
+    cursor: pointer;
+}
+
+/***************************************************************************/
+/*                               Animation pop-up connexion                */
+/***************************************************************************/
+/*popup avec les choix de connexions*/
+.calqueBlanc {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.blocUserConnect {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    margin-top: 32%;
+    transform: translateY(-50%);
+}
+
+.boutonUserConnect {
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    background-color: #ee6e6b;
+    padding: 6px;
+    width: 100%;
+    text-align: center;
+}
+
+.popupUser {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    right: -80px;
+    top: 50px;
+    background-color: rgb(255, 255, 255);
+    border-top: solid #ee6e6b 8px;
+    margin-top: 2rem;
+    height: 236px;
+    width: 340px;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
+}
+
+/*flèche vers le haut pour la popup*/
+.popupUser::before {
+    position: absolute;
+    content: '';
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #ee6e6b;
+    top: -22px;
+    right: 48%;
+}
+
+.blocConnexion {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    height: 523px;
+    width: 546px;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
+}
+
+.blocInscription {
+    height: 811.08px;
+}
+
+.formConnexion {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.blocInfo {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.legendConnexion {
+    font-size: 4.5rem;
+    font-weight: 700;
+    font-style: italic;
+    text-decoration: underline #ee6e6b;
+}
+
+.formConnexion label {
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.formConnexion input {
+    border: solid #ee6e6b 1px;
+    height: 43px;
+    font-size: 2rem;
+    padding: 4px;
+    width: 100%;
+}
+
+.mdpOublie {
+    color: #ee6e6b;
+    font-size: 1.5rem;
+}
+
+.lienReset {
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+.boutonConnexion {
+    background-color: #ee6e6b;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 12px;
+    border: none;
+}
+
+.cadreImage {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+.image-banniere {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9990;
+}
+
+.calque {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(215, 44, 44, 0.25);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9991;
+}
+
+.blocDesc {
+    position: absolute;
+    z-index: 9993;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    color: white;
+    width: 50%;
+}
+
+.titrePageHome, .descSite {
+    font-size: 3.9rem;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+}
+
+.descSite span {
+    font-style: italic;
+}
+
+.lienDesc {
+    text-decoration: none;
+    color: white;
+    border: solid white;
+    padding: 10px;
+    font-size: 2.9rem;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.blocImageAccueil {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    width: 90%;
+}
+
+.blocImagecadre {
+    height: 863px;
+    width: 464px;
+    margin: 15px;
+    position: relative;
+}
+
+.blocImagecadre img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.calqueNoir {
+    position: absolute;
+    z-index: 9990;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(10, 10, 10, 0.15);
+}
+
+.titreImage {
+    position: absolute;
+    z-index: 9991;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: quatro, sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 5.6rem;
+    text-transform: uppercase;
+}
+
+.footer {
+    background-color: #ee6e6b;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.ligneSeparation {
+    height: 220px;
+    border: solid white 0.8px;
+}
+
+.langue {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 220px !important;
+    padding: 0 25px 0 15px;
+}
+
+.drapeau {
+    height: 50px !important;
+}
+
+.menu-footer {
+    padding: 2px 10px 2px 10px;
+    width: 400px;
+    text-align: center;
+}
+
+.site__footer__menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+}
+
+.site__footer__menu a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+}
+
+.moyenPaiement, .moyenLivraison, .moyenContact {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 2px 40px 2px 40px;
+}
+
+.titreH3, .descLivraison {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.descMoyen, .mailSite {
+    font-size: 2rem;
+}
+
+.descMoyen {
+    padding: 5px;
+}
+
+.logoPaiement {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.paiement {
+    height: 40px !important;
+    margin: 10px;
+}
+
+.logoFedex {
+    height: 80px !important;
+}
+
+.p2-descLivraison {
+    margin-top: 20px;
+}
+
+.blocMail {
+    border-bottom: solid white 1px;
+    margin-top: 20px;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.logoMail {
+    height: 30px !important;
+    margin-left: 30px;
+}
+
+.logoRS {
+    margin-top: 18px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reseauSociaux {
+    height: 50px !important;
+    margin: 0 16px 0 16px;
+}
+
+/*******************************************************************************/
+/*                             Page créateurs                                  */
+/*******************************************************************************/
+.banniereCreateurs {
+    width: 100%;
+    height: 326px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.image-banniere-createurs {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.titrePageCreateurs {
+    position: absolute;
+    z-index: 9991;
+    font-size: 5.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-bottom: solid #ee6e6b 5px;
+}
+
+.formRecherche {
+    margin: auto;
+    margin-top: 40px;
+    width: 50%;
+    height: 75px;
+}
+
+.formRecherche input {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    font-size: 3rem;
+    border: solid #ee6e6b 1px;
+}
+
+.blocCreateurs {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.cadrePhotoCreateur {
+    height: 526px;
+    width: 380px;
+    position: relative;
+    margin: 25px;
+}
+
+.photoCreateurs {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.calqueCadreCreateurs {
+    position: absolute;
+    z-index: 9991;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(10, 10, 10, 0.15);
+}
+
+.blocinfoCreateurs {
+    text-align: center;
+    color: white;
+    width: 80%;
+    font-size: 3.3rem;
+    font-weight: 700;
+    font-style: italic;
+    position: absolute;
+    z-index: 9992;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15%;
+}
+
+/*******************************************************************************/
+/*                             Page Profil créateur                            */
+/*******************************************************************************/
+.cadreProfil {
+    position: relative;
+    margin: 10px 0 30px 0;
+}
+
+.cadrePhotoProfil {
+    height: 585px;
+    width: 400px;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
+.photoCreateursProfil {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.blocinfoCreateursProfil, .descProfil {
+    width: 60%;
+    margin-left: 28%;
+}
+
+.blocinfoCreateursProfil {
+    padding-top: 30px;
+}
+
+.blocRouge, .blocDescription {
+    height: 300px;
+}
+
+.descProfil {
+    line-height: 45px;
+    width: 70%;
+}
+
+.blocRouge {
+    background-color: #ee6e6b;
+    /* padding: 15px; */
+}
+
+.blocDescription {
+    padding: 20px 0 20px 0;
+    font-size: 3rem;
+}
+
+.blocinfoCreateursProfil {
+    color: white;
+    width: auto;
+}
+
+.ageCreateursProfil, .emailCreateur, .nbProduitCreateur {
+    margin: 20px 0 20px 0;
+}
+
+.nomCreateursProfil, .ageCreateursProfil {
+    font-size: 3.1rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.ageCreateursProfil {
+    font-size: 3rem;
+}
+
+.nbProduitCreateur {
+    font-size: 1.9rem;
+}
+
+.emailCreateur {
+    font-size: 1.9rem;
+    text-decoration: underline white;
+}
+
+.logoRSProfil {
+    display: flex;
+}
+
+.reseauSociauxProfil {
+    height: 50px;
+    margin: 0 16px 0 16px;
+}
+
+.mesProduits {
+    margin-top: 100px;
+}
+
+.titreProduit {
+    font-size: 3.5rem;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    color: #ee6e6b;
+    width: 40%;
+    margin: auto;
+    border-bottom: solid #ee6e6b;
+    margin-bottom: 20px;
+}
+
+.titreEspaceCom {
+    font-size: 3rem;
+    color: #ee6e6b;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline #ee6e6b;
+}
+
+.formCommentaire {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.espaceMessage, .boutonEnvoyer {
+    margin: 15px;
+}
+
+.espaceMessage {
+    width: 821px;
+    height: 189px;
+    padding: 8px;
+    font-size: 2.3rem;
+}
+
+.boutonEnvoyer {
+    background-color: #ee6e6b;
+    padding: 10px;
+    font-size: 3rem;
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    border: none;
+}
+
+/*******************************************************************************/
+/*                             Page Produit catégorie                            */
+/*******************************************************************************/
+.produitCatégorie {
+    padding: 20px;
+    width: 100%;
+}
+
+.blocPhotoCategorie {
+    margin: auto;
+    width: 65%;
+    display: flex;
+    justify-content: space-around;
+}
