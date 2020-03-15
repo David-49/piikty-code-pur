@@ -19,7 +19,7 @@ if (isset($_POST['buttonCo']) && !empty($_POST['mailConnect']) && !empty($_POST[
 
     if ($reqS -> rowCount() == 1) {
         $_SESSION['loginsession'] = $_POST['mail'];
-        $erreurCo = "<p class='erreurInfo'>OK</p>";
+        $erreur = "<p>OK</p>";
     // header('Location: index.php');
     } else {
         $erreurCo = "<p class='erreurInfo'>Vos identifiants sont incorrects !</p>";
