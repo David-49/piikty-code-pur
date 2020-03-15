@@ -1,33 +1,35 @@
 <?php include('BDD/PDO/connection_bdd.php'); ?>
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html lang="fr" dir="ltr">
   <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://use.typekit.net/tli5ydr.css">
-    <?php wp_head(); ?>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Accueil</title>
   </head>
 
-  <body <?php body_class(); ?>>
+  <body>
 
       <div class="calqueBlanc" id="calqueBlanc"></div>
       <div class="blocConnexion" id="blocConnexion">
-        <?php get_template_part('templates/connexion') ?>
+        <?php include('connexion.php'); ?>
       </div>
 
       <div class="blocConnexion blocInscription" id="blocInscription">
-        <?php get_template_part('templates/inscription') ?>
+        <?php include('inscription.php'); ?>
       </div>
 
     <header class="header">
 
-      <a href="<?php echo home_url('/'); ?>" class="lienLogo">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logoPiikti">
+      <a href="index.php" class="lienLogo">
+        <img src="logo/logo.svg" alt="Logo" class="logoPiikti">
       </a>
 
       <div class="info-connexion">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/accueil/user.svg" class="logoUser" id="userClick">
+          <img src="logo/user.svg" class="logoUser" id="userClick">
           <div class="popupUser" id="myPopup">
 
             <div class="blocUserConnect">
@@ -40,7 +42,7 @@
                     <?php
                     if (!empty($_POST('buttonDeco'))) {
                         session_destroy();
-                        header('Location:'.home_url('/'));
+                        header('Location: index.php');
                     }
                 } else {
                     ?>
@@ -53,24 +55,19 @@
             </div>
 
         </div>
-          <img src="<?php echo get_template_directory_uri(); ?>/img/accueil/supermarket.svg" class="logoCaddie">
+          <img src="logo/supermarket.svg" class="logoCaddie">
       </div>
 
 
 
 
         <nav class="nav">
-            <?php wp_nav_menu(
-                    array(
-                    'theme_location' => 'main',
-                    'container' => 'ul',
-                    'menu_class' => 'site__header__menu',
-                )
-                );
-            ?>
+            <ul class="site__header__menu">
+                <li><a href=""><?php echo strtoupper('Tendances') ?></a></li>
+                <li><a href=""><?php echo strtoupper('produits') ?></a></li>
+                <li><a href=""><?php echo strtoupper('les créateurs') ?></a></li>
+            </ul>
         </nav>
 
 
     </header>
-
-    <?php wp_body_open(); ?>
