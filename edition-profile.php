@@ -107,12 +107,6 @@ $reqS -> closeCursor();
             <input type="tel" name="tel" value="<?php echo $tel; ?>">
         </div>
 
-
-        <div class="sousBlocEdit">
-            <label for="age">Age</label>
-            <input type="number" name="age" value="<?php echo $age; ?>">
-        </div>
-
         <div class="sousBlocEdit">
             <label for="langue">Langue</label>
             <select class="" name="langue">
