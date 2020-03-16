@@ -14,20 +14,6 @@
 
 </div>
 
-<?php
-
-$reqS2 = $connection -> prepare("SELECT mail, mdp FROM piikti_users");
-$reqS2 -> execute();
-
-while ($ligne = $reqS2 -> fetch()) {
-    echo "<p>".$ligne -> mail."</p>";
-    echo "<p>".$ligne -> mdp."</p>";
-}
-
-echo "<br>".password_hash('test', PASSWORD_BCRYPT);
-
- ?>
-
 <div class="blocImageAccueil">
 
 

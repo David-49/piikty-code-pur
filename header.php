@@ -27,12 +27,12 @@
 
               <div class="blocInfo">
                   <label for="select-mail">Adresse mail</label>
-                  <input type="email" name="mail"  id="mail">
+                  <input type="email" name="mailConnect"  id="mail">
               </div>
 
               <div class="blocInfo">
                   <label for="select-mdp">Mot de passe</label>
-                  <input type="password" name="mdp" id="mdp">
+                  <input type="password" name="mdpConnect" id="mdp">
               </div>
 
               <p><span class="mdpOublie">Mot de passe oublié ?</span><a class="lienReset">Cliquez-ici</a></p>
@@ -65,12 +65,12 @@
 
               <div class="blocInfo">
                   <label for="select-mail">Adresse mail</label>
-                  <input type="email" name="mail">
+                  <input type="email" name="mailInscription">
               </div>
 
               <div class="blocInfo">
                   <label for="select-mdp">Mot de passe</label>
-                  <input type="password" name="mdp">
+                  <input type="password" name="mdpInscription">
               </div>
 
               <div class="blocInfo">
@@ -117,9 +117,6 @@
         </div>
           <img src="logo/supermarket.svg" class="logoCaddie">
       </div>
-
-
-
 
         <nav class="nav">
             <ul class="site__header__menu">

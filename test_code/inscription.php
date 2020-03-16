@@ -1,6 +1,16 @@
+<?php session_start(); ?>
+<?php include('BDD/PDO/connection_bdd.php'); ?>
 <?php
   $erreurIns = "";
-if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['nom']) and !empty($_POST['mailInscription']) and !empty($_POST['mdpInscription'])) {
+if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['nom']) and !empty($_POST['mailInscription']) and !empty($_POST['mdpInscription']) and !empty($_POST['mdpVerif'])) {
+    function valid_donnees($donnees)
+    {
+        $donnees = trim($donnees);
+        $donnees = stripslashes($donnees);
+        $donnees = htmlspecialchars($donnees);
+        return $donnees;
+    }
+
     $prenom = valid_donnees($_POST['prenom']);
     $nom = valid_donnees($_POST['nom']);
     $mail = valid_donnees($_POST['mailInscription']);
@@ -30,22 +40,22 @@ if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['no
                         ]);
 
                         if ($ok) {
-                            $_SESSION['loginsession'] = $_POST['mail'];
-                            header('Location: index.php');
+                            $_SESSION['loginsession'] = $_POST['mailInscription'];
+                            header('Location: test.php');
                         }
                     } else {
-                        $erreurIns = "<p class='erreurInfo'>Les mots de passe ne correspondent pas !</p>";
+                        echo "<p class='erreurInfo'>Les mots de passe ne correspondent pas !</p>";
                     }
                 } else {
-                    $erreurIns = "<p class='erreurInfo'>Cet adresse email est déjà utilisé. Veuillez en choisir une autres.</p>";
+                    echo"<p class='erreurInfo'>Cet adresse email est déjà utilisé. Veuillez en choisir une autres.</p>";
                 }
             } else {
-                $erreurIns = "<p class='erreurInfo'>Veuillez rentrer une adresse email.</p>";
+                echo "<p class='erreurInfo'>Veuillez rentrer une adresse email.</p>";
             }
         } else {
-            $erreurIns = "<p class='erreurInfo'>Votre nom dépasse la limite des 255 caractères. Veuillez choisir un autres nom.</p>";
+            echo"<p class='erreurInfo'>Votre nom dépasse la limite des 255 caractères. Veuillez choisir un autres nom.</p>";
         }
     } else {
-        $erreurIns = "<p class='erreurInfo'>Votre prenom dépasse la limite des 255 caractères. Veuillez choisir un autres prenom.</p>";
+        echo"<p class='erreurInfo'>Votre prenom dépasse la limite des 255 caractères. Veuillez choisir un autres prenom.</p>";
     }
 }

@@ -1,6 +1,13 @@
 <?php
   $erreurIns = "";
 if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['nom']) and !empty($_POST['mailInscription']) and !empty($_POST['mdpInscription'])) {
+    function valid_donnees($donnees)
+    {
+        $donnees = trim($donnees);
+        $donnees = stripslashes($donnees);
+        $donnees = htmlspecialchars($donnees);
+        return $donnees;
+    }
     $prenom = valid_donnees($_POST['prenom']);
     $nom = valid_donnees($_POST['nom']);
     $mail = valid_donnees($_POST['mailInscription']);
@@ -30,7 +37,7 @@ if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['no
                         ]);
 
                         if ($ok) {
-                            $_SESSION['loginsession'] = $_POST['mail'];
+                            $_SESSION['loginsession'] = $_POST['mailInscription'];
                             header('Location: index.php');
                         }
                     } else {
