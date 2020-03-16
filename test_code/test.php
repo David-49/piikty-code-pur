@@ -4,6 +4,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
         <title></title>
     </head>
     <body>
@@ -69,5 +70,54 @@
                 }
                 ?>
 
+                <form action="#">
+              <div class="input-file-container">
+                <input class="input-file" id="my-file" type="file">
+                <label tabindex="0" for="my-file" class="input-file-trigger">Modifier</label>
+              </div>
+              <img src="" id="img" alt="">
+    </form>
     </body>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+$(function(){
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#my-file").change(function(){
+        readURL(this);
+    });
+
+    document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".input-file" ),
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+    button.addEventListener( "click", function( event ) {
+       fileInput.focus();
+       return false;
+    });
+    // fileInput.addEventListener( "change", function( event ) {
+    //     the_return.innerHTML = this.value;
+    // });
+
+
+ });
+
+</script>
 </html>

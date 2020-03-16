@@ -24,6 +24,40 @@ $(function(){
       $('#blocInscription').toggle(10);
     });
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInpt").change(function(){
+        readURL(this);
+    });
+
+    document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".input-file" ),
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+    button.addEventListener( "keydown", function( event ) {
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+            fileInput.focus();
+        }
+    });
+    button.addEventListener( "click", function( event ) {
+       fileInput.focus();
+       return false;
+    });
+
+
+ });
 
 
     // $('#boutonConnexion').click(function() {
@@ -55,5 +89,3 @@ $(function(){
     //     })
     //     return false;
     // });
-
-});

@@ -755,3 +755,125 @@ body {
     display: flex;
     justify-content: space-around;
 }
+
+/*******************************************************************************/
+/*                             Page edition profil                            */
+/*******************************************************************************/
+.titrePageEdition {
+    font-size: 4rem;
+    font-style: italic;
+    font-weight: 700;
+    color: #ee6e6b;
+    margin-left: 100px;
+}
+
+.containerForm {
+    display: flex;
+    margin: 50px 0 50px 100px;
+    padding: 10px;
+}
+
+.editionInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 467px;
+}
+
+.editionInfo input, select {
+    font-size: 1.5rem;
+    padding: 5px;
+    height: 43px;
+    border: solid #ee6e6b 1px;
+}
+
+.editionInfo textarea {
+    border: solid #ee6e6b 1px;
+    font-size: 1.5rem;
+    padding: 5px;
+}
+
+.blocDescriptionEdit {
+    width: 100% !important;
+}
+
+.editionInfo label {
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+}
+
+.blocNomPrenom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blocNomPrenom .sousBlocEdit {
+    width: 45%;
+}
+
+.sousBlocEdit {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10px;
+}
+
+.boutonEdit {
+    width: 30%;
+    background-color: #ee6e6b;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 10px;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+
+/*******************************************************************************/
+/*                             Personnalisation input file                            */
+/*******************************************************************************/
+.blocPreview {
+    align-self: flex-start;
+}
+
+.imageBlockEdition {
+    height: 163px;
+    width: 163px;
+    margin: auto;
+}
+
+.imageEditionProfil {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.input-file-container {
+    width: 225px;
+    position: relative;
+}
+
+.js .input-file-trigger {
+    display: block;
+    color: #ee6e6b;
+    text-decoration: underline #ee6e6b;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+}
+
+.js .input-file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 225px;
+    opacity: 0;
+    padding: 14px 0;
+    cursor: pointer;
+}
