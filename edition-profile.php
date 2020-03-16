@@ -2,6 +2,40 @@
 
 <h1 class="titrePageEdition">Paramètres</h1>
 
+<?php
+$login = $_SESSION['loginsession'];
+$reqS = $connection -> prepare("SELECT * FROM piikti_users WHERE mail= '$login'");
+$reqS -> execute();
+
+while ($ligne = $reqS -> fetch()) {
+    $id = $ligne -> id;
+    $prenom = $ligne -> prenom;
+    $nom = $ligne -> nom;
+    $mail = $ligne -> mail;
+}
+
+$reqS -> closeCursor();
+
+$reqS = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
+$reqS -> execute();
+
+if ($reqS -> rowCount() == 1) {
+    while ($ligne = $reqS -> fetch()) {
+        $desc = $ligne -> description;
+        $age = $ligne -> age;
+        $tel = $ligne -> numero;
+        $pathPhoto = $ligne -> nom_photo_profile;
+    }
+} else {
+    $desc  = "";
+    $age = "";
+    $tel = "";
+    $pathPhoto = "";
+}
+
+$reqS -> closeCursor();
+?>
+
 <form class="containerForm" action="traitement-edit.php" method="post"  enctype="multipart/form-data">
 
     <div class="blocPreview">
@@ -22,18 +56,18 @@
         <div class="blocNomPrenom">
             <div class="sousBlocEdit">
                 <label for="nom">Nom</label>
-                <input type="text" name="nomEdit">
+                <input type="text" name="nomEdit" value="<?php echo $nom; ?>">
             </div>
 
             <div class="sousBlocEdit">
                 <label for="prenom">Prenom</label>
-                <input type="text" name="nomEdit">
+                <input type="text" name="prenomEdit" value="<?php echo $prenom; ?>">
             </div>
         </div>
 
         <div class="sousBlocEdit blocDescriptionEdit">
             <label for="age">Description</label>
-            <textarea name="descEdit" rows="8" cols="80"></textarea>
+            <textarea name="descEdit" rows="8" cols="80"><?php echo $desc; ?></textarea>
         </div>
 
         <div class="sousBlocEdit">
@@ -54,7 +88,7 @@
 
         <div class="sousBlocEdit">
             <label for="mailEdit">Adresse mail</label>
-            <input type="email" name="mailEdit">
+            <input type="email" name="mailEdit" value="<?php echo $mail; ?>">
         </div>
 
         <div class="sousBlocEdit">
@@ -70,13 +104,13 @@
 
         <div class="sousBlocEdit">
             <label for="numero">Téléphone</label>
-            <input type="tel" name="tel">
+            <input type="tel" name="tel" value="<?php echo $tel; ?>">
         </div>
 
 
         <div class="sousBlocEdit">
             <label for="age">Age</label>
-            <input type="number" name="age">
+            <input type="number" name="age" value="<?php echo $age; ?>">
         </div>
 
         <div class="sousBlocEdit">
