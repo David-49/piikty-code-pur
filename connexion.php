@@ -25,9 +25,9 @@ if (isset($_POST['buttonCo']) && !empty($_POST['mailConnect']) && !empty($_POST[
             $_SESSION['loginsession'] = $_POST['mailConnect'];
             header('Location: index.php');
         } else {
-            echo "<p>Le mot de passe est incorrect !</p>";
+            $erreurCo = "<p class='erreurInfo'>Le mot de passe est incorrect !</p>";
         }
     } else {
-        echo "<p class='erreurInfo'>Cet email n'existe pas dans notre base de données.</p>";
+        $erreurCo = "<p class='erreurInfo'>Cet email n'existe pas dans notre base de données.</p>";
     }
 }
