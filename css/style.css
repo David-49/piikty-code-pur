@@ -1062,59 +1062,71 @@ body {
     cursor: pointer;
 }
 
-.containerRadio {
+/* Cachons la case à cocher */
+form p {
     position: relative;
-    /* height: 40px;
-    width: 40px; */
+    /* permet de positionner la checkbox cachée */
 }
 
-.radioTaille {
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    /* Cache la checkbox sans
+	   la désactiver pour les
+	   lecteurs d'écran */
     position: absolute;
-    opacity: 0.1;
     left: 0;
+    opacity: 0.01;
 }
 
 /* on prépare le label */
-.radioTaille:not(:checked)+.labelRadio,
-.radioTaille:checked+.labelRadio {
+[type="checkbox"]:not(:checked)+label,
+[type="checkbox"]:checked+label {
     position: relative;
     /* permet de positionner les pseudo-éléments */
-    padding-left: 2.3em;
-    /* fait un peu d'espace pour notre case à venir */
-    font-size: 1.05em;
+    font-size: 2rem;
     /* Label un peu plus gros */
-    line-height: 1.7;
+    line-height: 1;
     cursor: pointer;
     /* affiche un curseur adapté */
 }
 
 /* Aspect de la case */
-.radioS:not(:checked)+.label-S:before,
-.radioS:checked+.label-S:before {
+[type="checkbox"]:not(:checked)+label:before,
+[type="checkbox"]:checked+label:before {
     content: 'S';
     position: absolute;
-    left: 0px;
-    top: 0;
+    left: 0;
+    top: 5px;
     width: 35px;
     height: 35px;
+    padding: 5px;
     border: 1px solid #ee6e6b;
     background: #FFF;
-    transition: all .275s;
-    font-size: 2rem;
     text-align: center;
 }
 
 /* Aspect de la coche */
-.radioS:not(:checked)+.label-S:after,
-.radioS:checked+.label-S:after {
+[type="checkbox"]:not(:checked)+label:after,
+[type="checkbox"]:checked+label:after {
     content: 'S';
     position: absolute;
-    top: .38em;
-    left: .18em;
-    font-size: 1.6em;
-    color: white;
+    top: 5px;
+    left: 1px;
+    line-height: 1.3;
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+/* Aspect non cochée */
+[type="checkbox"]:not(:checked)+label:after {
+    opacity: 0;
+}
+
+/* Aspect cochée */
+[type="checkbox"]:checked+label:after {
+    opacity: 1;
     background-color: #ee6e6b;
-    line-height: 0;
-    transition: all .2s;
-    /* Petite transition */
+    width: 45px;
+    height: 46px;
+    text-align: center;
 }

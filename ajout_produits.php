@@ -43,17 +43,17 @@
             <label for="taille-produit">Taille</label>
             <div class="blocRadio">
                 <p class="containerRadio">
-                    <input type="radio" name="tailleS" value="" class="radioTaille radioS">
-                    <label for="taille-S" class="labelRadio label-S">Taille S</label>
+                    <input type="checkbox" name="tailleS" value="" class="radioTaille radioS"/>
+                    <label for="taille-S" class="labelRadio label-S"></label>
                 </p>
-                <p class="containerRadio">
-                    <input type="radio" name="tailleM" value="" class="radioTaille radioM">
+                <!-- <p class="containerRadio">
+                    <input type="radio" name="tailleM" value="" class="radioTaille radioM"/>
                     <label for="taille-M" class="labelRadio label-M">Taille M</label>
                 </p>
                 <p class="containerRadio">
-                    <input type="radio radioL" name="tailleL" value="" class="radioTaille">
+                    <input type="radio" name="tailleL" value="" class="radioTaille radioL"/>
                     <label for="taille-L" class="labelRadio label-L">Taille L</label>
-                </p>
+                </p> -->
             </div>
         </div>
     </div>
