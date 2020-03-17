@@ -1063,13 +1063,20 @@ body {
 }
 
 /* Cachons la case à cocher */
-form p {
+p.containerRadio {
     position: relative;
     /* permet de positionner la checkbox cachée */
 }
 
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
+.radioTaille, .labelRadio {
+    cursor: pointer;
+}
+
+/**************************************************************************/
+/*                          Custom checkbox taille S                      */
+/**************************************************************************/
+.radioS:not(:checked),
+.radioS:checked {
     /* Cache la checkbox sans
 	   la désactiver pour les
 	   lecteurs d'écran */
@@ -1079,20 +1086,20 @@ form p {
 }
 
 /* on prépare le label */
-[type="checkbox"]:not(:checked)+label,
-[type="checkbox"]:checked+label {
+.radioS:not(:checked)+.label-S,
+.radioS:checked+.label-S {
     position: relative;
     /* permet de positionner les pseudo-éléments */
     font-size: 2rem;
     /* Label un peu plus gros */
-    line-height: 1;
-    cursor: pointer;
+    line-height: 2;
+    label cursor: pointer;
     /* affiche un curseur adapté */
 }
 
 /* Aspect de la case */
-[type="checkbox"]:not(:checked)+label:before,
-[type="checkbox"]:checked+label:before {
+.radioS:not(:checked)+.label-S:before,
+.radioS:checked+.label-S:before {
     content: 'S';
     position: absolute;
     left: 0;
@@ -1106,24 +1113,156 @@ form p {
 }
 
 /* Aspect de la coche */
-[type="checkbox"]:not(:checked)+label:after,
-[type="checkbox"]:checked+label:after {
+.radioS:not(:checked)+.label-S:after,
+.radioS:checked+.label-S:after {
     content: 'S';
     position: absolute;
     top: 5px;
     left: 1px;
-    line-height: 1.3;
+    line-height: 2.5;
     font-size: 2rem;
     color: #FFFFFF;
 }
 
 /* Aspect non cochée */
-[type="checkbox"]:not(:checked)+label:after {
+.radioS:not(:checked)+.label-S:after {
     opacity: 0;
 }
 
 /* Aspect cochée */
-[type="checkbox"]:checked+label:after {
+.radioS:checked+.label-S:after {
+    opacity: 1;
+    background-color: #ee6e6b;
+    width: 45px;
+    height: 46px;
+    text-align: center;
+}
+
+/**************************************************************************/
+/*                          Custom checkbox taille M                      */
+/**************************************************************************/
+.radioM:not(:checked),
+.radioM:checked {
+    /* Cache la checkbox sans
+	   la désactiver pour les
+	   lecteurs d'écran */
+    position: absolute;
+    left: 80px;
+    opacity: 0.01;
+}
+
+/* on prépare le label */
+.radioM:not(:checked)+.label-M,
+.radioM:checked+.label-M {
+    position: relative;
+    /* permet de positionner les pseudo-éléments */
+    font-size: 2rem;
+    /* Label un peu plus gros */
+    line-height: 2;
+    label cursor: pointer;
+    /* affiche un curseur adapté */
+}
+
+/* Aspect de la case */
+.radioM:not(:checked)+.label-M:before,
+.radioM:checked+.label-M:before {
+    content: 'M';
+    position: absolute;
+    left: 80px;
+    top: 5px;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid #ee6e6b;
+    background: #FFF;
+    text-align: center;
+}
+
+/* Aspect de la coche */
+.radioM:not(:checked)+.label-M:after,
+.radioM:checked+.label-M:after {
+    content: 'M';
+    position: absolute;
+    top: 5px;
+    left: 81px;
+    line-height: 2.5;
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+/* Aspect non cochée */
+.radioM:not(:checked)+.label-M:after {
+    opacity: 0;
+}
+
+/* Aspect cochée */
+.radioM:checked+.label-M:after {
+    opacity: 1;
+    background-color: #ee6e6b;
+    width: 45px;
+    height: 46px;
+    text-align: center;
+}
+
+/**************************************************************************/
+/*                          Custom checkbox taille L                      */
+/**************************************************************************/
+.radioL:not(:checked),
+.radioL:checked {
+    /* Cache la checkbox sans
+	   la désactiver pour les
+	   lecteurs d'écran */
+    position: absolute;
+    left: 160px;
+    opacity: 0.01;
+}
+
+/* on prépare le label */
+.radioL:not(:checked)+.label-L,
+.radioL:checked+.label-L {
+    position: relative;
+    /* permet de positionner les pseudo-éléments */
+    font-size: 2rem;
+    /* Label un peu plus gros */
+    line-height: 2.1;
+    cursor: pointer;
+    /* affiche un curseur adapté */
+}
+
+/* Aspect de la case */
+.radioL:not(:checked)+.label-L:before,
+.radioL:checked+.label-L:before {
+    content: 'L';
+    position: absolute;
+    left: 160px;
+    top: 5px;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid #ee6e6b;
+    background: #FFF;
+    text-align: center;
+}
+
+/* Aspect de la coche */
+.radioL:not(:checked)+.label-L:after,
+.radioL:checked+.label-L:after {
+    content: 'L';
+    position: absolute;
+    top: 5px;
+    left: 161px;
+    line-height: 2.5;
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+/* Aspect non cochée */
+.radioL:not(:checked)+.label-L:after {
+    opacity: 0;
+}
+
+/* Aspect cochée */
+.radioL:checked+.label-L:after {
     opacity: 1;
     background-color: #ee6e6b;
     width: 45px;

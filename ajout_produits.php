@@ -40,25 +40,23 @@
         </div>
 
         <div class="blocChoixProduit blocTailleProduit">
-            <label for="taille-produit">Taille</label>
+            <p for="taille-produit">Taille</p>
             <div class="blocRadio">
                 <p class="containerRadio">
-                    <input type="checkbox" name="tailleS" value="" class="radioTaille radioS"/>
+                    <input type="checkbox" name="tailleS" class="radioTaille radioS" id="taille-S">
                     <label for="taille-S" class="labelRadio label-S"></label>
                 </p>
-                <!-- <p class="containerRadio">
-                    <input type="radio" name="tailleM" value="" class="radioTaille radioM"/>
-                    <label for="taille-M" class="labelRadio label-M">Taille M</label>
+                <p class="containerRadio">
+                    <input type="checkbox" name="tailleM" class="radioTaille radioM" id="taille-M">
+                    <label for="taille-M" class="labelRadio label-M"></label>
                 </p>
                 <p class="containerRadio">
-                    <input type="radio" name="tailleL" value="" class="radioTaille radioL"/>
-                    <label for="taille-L" class="labelRadio label-L">Taille L</label>
-                </p> -->
+                    <input type="checkbox" name="tailleL" class="radioTaille radioL" id="taille-L">
+                    <label for="taille-L" class="labelRadio label-L"></label>
+                </p>
             </div>
         </div>
     </div>
-
-
 
     </form>
 </div>
