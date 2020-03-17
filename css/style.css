@@ -984,3 +984,137 @@ body {
     padding: 14px 0;
     cursor: pointer;
 }
+
+/*******************************************************************************/
+/*                             Personnalisation input file                     */
+/*******************************************************************************/
+.containerAjoutProduit {
+    padding: 60px;
+}
+
+.titreAjoutProduit {
+    margin-left: 50px;
+    font-size: 4rem;
+    font-style: italic;
+    font-weight: 700;
+    color: #ee6e6b;
+}
+
+.formAjoutProduit {
+    margin-left: 50px;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.separationVetical {
+    height: 100%;
+    width: 8px;
+    background-color: #ee6e6b;
+}
+
+.blocGaucheProduit, .blocDroitProduit {
+    width: 40%;
+}
+
+.blocChoixProduit {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blocRadio {
+    display: flex;
+}
+
+.formAjoutProduit input {
+    font-size: 1.5rem;
+    padding: 5px;
+    height: 43px;
+    border: solid #ee6e6b 1px;
+}
+
+.formAjoutProduit textarea {
+    font-size: 1.5rem;
+    padding: 5px;
+    border: solid #ee6e6b 1px;
+}
+
+.formAjoutProduit label {
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+}
+
+.blocChoixProduit {
+    margin-top: 15px;
+}
+
+.boutonProduit {
+    width: 40%;
+    height: 50px;
+    margin-top: 60px;
+    background-color: #ee6e6b;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.containerRadio {
+    position: relative;
+    /* height: 40px;
+    width: 40px; */
+}
+
+.radioTaille {
+    position: absolute;
+    opacity: 0.1;
+    left: 0;
+}
+
+/* on prépare le label */
+.radioTaille:not(:checked)+.labelRadio,
+.radioTaille:checked+.labelRadio {
+    position: relative;
+    /* permet de positionner les pseudo-éléments */
+    padding-left: 2.3em;
+    /* fait un peu d'espace pour notre case à venir */
+    font-size: 1.05em;
+    /* Label un peu plus gros */
+    line-height: 1.7;
+    cursor: pointer;
+    /* affiche un curseur adapté */
+}
+
+/* Aspect de la case */
+.radioS:not(:checked)+.label-S:before,
+.radioS:checked+.label-S:before {
+    content: 'S';
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ee6e6b;
+    background: #FFF;
+    transition: all .275s;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Aspect de la coche */
+.radioS:not(:checked)+.label-S:after,
+.radioS:checked+.label-S:after {
+    content: 'S';
+    position: absolute;
+    top: .38em;
+    left: .18em;
+    font-size: 1.6em;
+    color: white;
+    background-color: #ee6e6b;
+    line-height: 0;
+    transition: all .2s;
+    /* Petite transition */
+}
