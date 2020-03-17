@@ -42,6 +42,12 @@
             </div>
 
             <div class="blocInfo">
+                <label for="select-date">Date de naissance</label>
+                <input type="date" name="dateNaissance" required>
+            </div>
+
+
+            <div class="blocInfo">
                 <label for="select-mail">Adresse mail</label>
                 <input type="email" name="mailInscription">
             </div>

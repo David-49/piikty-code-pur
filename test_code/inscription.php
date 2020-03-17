@@ -2,7 +2,7 @@
 <?php include('BDD/PDO/connection_bdd.php'); ?>
 <?php
   $erreurIns = "";
-if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['nom']) and !empty($_POST['mailInscription']) and !empty($_POST['mdpInscription']) and !empty($_POST['mdpVerif'])) {
+if (isset($_POST['buttonCo'])) {
     function valid_donnees($donnees)
     {
         $donnees = trim($donnees);
@@ -11,51 +11,32 @@ if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['no
         return $donnees;
     }
 
-    $prenom = valid_donnees($_POST['prenom']);
-    $nom = valid_donnees($_POST['nom']);
-    $mail = valid_donnees($_POST['mailInscription']);
-    $mdp = $_POST['mdpInscription'];
-    $mdpVerif = $_POST['mdpVerif'];
+    $dateNaissance = valid_donnees($_POST['dateNaissance']);
+    $dateActu = date('d/m/Y');
 
+    var_dump($dateNaissance, $dateActu);
 
-    $prenomTaille = strlen($prenom);
-    $nomTaille = strlen($nom);
-    $mailTaille = strlen($mail);
-
-    if ($prenomTaille < 256) {
-        if ($nomTaille < 256) {
-            if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                $reqS = $connection -> prepare("SELECT * FROM piikti_users WHERE mail = '$mail'");
-                $reqS -> execute();
-                if ($reqS -> rowCount() == 0) {
-                    if ($mdp == $mdpVerif) {
-                        $mdp = password_hash($mdp, PASSWORD_BCRYPT);
-                        $insert = $connection -> prepare("INSERT INTO piikti_users (prenom, nom, mail, mdp) VALUES(:prenom, :nom, :mail, :mdp)");
-
-                        $ok = $insert -> execute([
-                            'prenom' => $prenom,
-                            'nom' => $nom,
-                            'mail' => $mail,
-                            'mdp' => $mdp,
-                        ]);
-
-                        if ($ok) {
-                            $_SESSION['loginsession'] = $_POST['mailInscription'];
-                            header('Location: test.php');
-                        }
-                    } else {
-                        echo "<p class='erreurInfo'>Les mots de passe ne correspondent pas !</p>";
-                    }
-                } else {
-                    echo"<p class='erreurInfo'>Cet adresse email est déjà utilisé. Veuillez en choisir une autres.</p>";
-                }
-            } else {
-                echo "<p class='erreurInfo'>Veuillez rentrer une adresse email.</p>";
-            }
-        } else {
-            echo"<p class='erreurInfo'>Votre nom dépasse la limite des 255 caractères. Veuillez choisir un autres nom.</p>";
+    function age($date)
+    {
+        $age = date('Y') - date('Y', strtotime($date));
+        if (date('md') < date('md', strtotime($date))) {
+            return $age - 1;
         }
-    } else {
-        echo"<p class='erreurInfo'>Votre prenom dépasse la limite des 255 caractères. Veuillez choisir un autres prenom.</p>";
+        return $age;
     }
+
+    echo age($dateNaissance);
+
+    // Calcule l'âge à partir d'une date de naissance jj/mm/aaaa
+    // function ageNaissance($date_naissance)
+    // {
+    //     $am = explode('-', $date_naissance);
+    //     $an = explode('/', date('Y/m/d'));
+    //     if (($am[1] < $an[1]) || (($am[1] == $an[1]) && ($am[0] <= $an[0]))) {
+    //         return $an[2] - $am[2];
+    //     }
+    //     return $an[2] - $am[2] - 1;
+    // }
+    //
+    // echo ageNaissance($dateNaissance);
 }

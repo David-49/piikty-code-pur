@@ -27,12 +27,12 @@
 
               <div class="blocInfo">
                   <label for="select-mail">Adresse mail</label>
-                  <input type="email" name="mailConnect"  id="mail">
+                  <input type="email" name="mailConnect"  id="mail" required>
               </div>
 
               <div class="blocInfo">
                   <label for="select-mdp">Mot de passe</label>
-                  <input type="password" name="mdpConnect" id="mdp">
+                  <input type="password" name="mdpConnect" id="mdp" required>
               </div>
 
               <p><span class="mdpOublie">Mot de passe oublié ?</span><a class="lienReset">Cliquez-ici</a></p>
@@ -55,27 +55,33 @@
 
               <div class="blocInfo">
                   <label for="select-prenom">Prénom</label>
-                  <input type="text" name="prenom">
+                  <input type="text" name="prenom" required>
               </div>
 
               <div class="blocInfo">
                   <label for="select-nom">Nom</label>
-                  <input type="text" name="nom">
+                  <input type="text" name="nom" required>
               </div>
 
               <div class="blocInfo">
+                  <label for="select-date">Date de naissance</label>
+                  <input type="date" name="dateNaissance" required>
+              </div>
+
+
+              <div class="blocInfo">
                   <label for="select-mail">Adresse mail</label>
-                  <input type="email" name="mailInscription">
+                  <input type="email" name="mailInscription" required>
               </div>
 
               <div class="blocInfo">
                   <label for="select-mdp">Mot de passe</label>
-                  <input type="password" name="mdpInscription">
+                  <input type="password" name="mdpInscription" required>
               </div>
 
               <div class="blocInfo">
                   <label for="select-mdpVerif">Confirmation du mot de passe</label>
-                  <input type="password" name="mdpVerif">
+                  <input type="password" name="mdpVerif" required>
               </div>
 
                 <?php echo $erreurIns; ?>

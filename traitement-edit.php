@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php
 function valid_donnees($donnees)
 {
@@ -20,13 +19,10 @@ while ($ligne = $reqS -> fetch()) {
 }
 
 
-if (isset($_POST['boutonEdit']) {
-
-
+if (isset($_POST['boutonEdit'])) {
     $reqS = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
     $reqS -> execute();
     if ($reqS -> rowCount() == 0) {
-
         $reqI = $connection -> prepare("INSERT INTO piikti_users_meta (id_utilisateur) VALUES (:id_utilisateur)");
 
         $reqI -> execute([
@@ -34,51 +30,51 @@ if (isset($_POST['boutonEdit']) {
         ]);
 
         $reqI -> closeCursor();
-
     }
 
 
-
-    if (!empty($_POST['photo'])) {
-        $nomFichier = $_FILES["photo"]["name"];
+    if (!empty($_FILES['photo']['name'])) {
+        $nomPhoto = $_FILES["photo"]["name"];
         $type = $_FILES['photo']['type'];
         $taille = $_FILES['photo']['size'];
         $error = $_FILES['photo']['error'];
         $temp_name =  $_FILES["photo"]["tmp_name"];
 
         //on récupère l'info de l'extension (.jpg si photo)
-        $info = strtolower(strrchr($nomFichier, "."));
+        $info = strtolower(strrchr($nomPhoto, "."));
 
         //on stock dans une variable la destination du fichier jusqu'au dossier serveur
-        $destination = "upload/photo_profile/$nomFichier";
+        $destination = "upload/photo_profile/$nomPhoto";
+
 
         if ($info == ".jpg" || $info == ".jpeg" && $taille <= 2000000) {
 
             //on déplace le fichier dans notre serveur
             move_uploaded_file($temp_name, $destination);
 
-            $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET nom = '$nomFichier' WHERE id= $id");
+            $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET chemin_photo_profile = '$destination' WHERE id= $id");
             $reqUp -> execute();
-            $ok = $reqUp -> closeCursor();
+            $reqUp -> closeCursor();
+
+            $reqUp -> closeCursor();
+
+            //on renomme le fichier de sorte que chaque fichier ai un nom unique avec l'id
+            rename("upload/photo_profile/$nomPhoto", "upload/photo_profile/Photo_".$id.$info);
+
+            //on met à jour la variable avec le nouveau nom
+            $destination = "upload/photo_profile/Photo_".$id.$info;
+
+            //on met à jour le nom du fichier dans la base de donnée
+            $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET chemin_photo_profile = '$destination' WHERE id_utilisateur = $id");
+            $ok = $reqUp -> execute();
 
             if ($ok) {
                 $maj .= "<p class='majedit'>Photo de profile bien mise à jour.</p>";
             }
 
-            $req -> closeCursor();
-
-            //on renomme le fichier de sorte que chaque fichier ai un nom unique avec l'id
-            rename("upload/photo_profile/$nomFichier";, "upload/photo_profile/Photo_".$id.$info);
-
-            //on met à jour la variable avec le nouveau nom
-            $nomFichier = "Photo_".$id.$info;
-
-            //on met à jour le nom du fichier dans la base de donnée
-            $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET nom = '$nomFichier' WHERE id= $id");
-            $reqUp -> execute();
             $reqUp -> closeCursor();
-
-
+        } else {
+            $erreurEdit .= "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
         }
     }
 
@@ -88,9 +84,9 @@ if (isset($_POST['boutonEdit']) {
 
 
     if (!empty($_POST['nomEdit'])) {
-        $nom = valid_donnees($_POST['nom']);
+        $nomEdit = valid_donnees($_POST['nomEdit']);
 
-        if (strlen($nom) < 256) {
+        if (strlen($nomEdit) < 256) {
             $reqUp = $connection -> prepare("UPDATE piikti_users SET nom = '$nomEdit' WHERE id= $id");
             $ok = $reqUp -> execute();
 
@@ -108,8 +104,8 @@ if (isset($_POST['boutonEdit']) {
     if (!empty($_POST['prenomEdit'])) {
         $prenomEdit = valid_donnees($_POST['prenomEdit']);
 
-        if (strlen($prenomEdit)) {
-            $reqUp = $connection -> prepare("UPDATE piikti_users SET nom = '$prenomEdit' WHERE id= $id");
+        if (strlen($prenomEdit) < 256) {
+            $reqUp = $connection -> prepare("UPDATE piikti_users SET prenom = '$prenomEdit' WHERE id= $id");
             $ok = $reqUp -> execute();
 
             if ($ok) {
@@ -126,32 +122,13 @@ if (isset($_POST['boutonEdit']) {
         $descEdit= valid_donnees($_POST['descEdit']);
 
         if (strlen($descEdit) < 1001) {
-            $reqS = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
-            $reqS -> execute();
-            if ($reqS -> rowCount() == 0) {
+            $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET description = '$descEdit' WHERE id_utilisateur = $id");
+            $ok = $reqUp -> execute();
 
-                $reqI = $connection -> prepare("INSERT INTO piikti_users_meta (id_utilisateur, description) VALUES (:id_utilisateur, :description)");
-
-                $ok = $reqI -> execute([
-                    'id_utilisateur' => $id,
-                    'description' => $descEdit,
-                ]);
-
-                if ($ok) {
-                    $maj .= "<p class='majedit'>Description bien mise à jour.</p>";
-                }
-                $reqI -> closeCursor();
-
+            if ($ok) {
+                $maj .= "<p class='majedit'>Description bien mise à jour.</p>";
             }
-            else {
-                $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET description = '$descEdit' WHERE id_utilisateur = $id");
-                $ok = $reqUp -> execute();
-
-                if ($ok) {
-                    $maj .= "<p class='majedit'>Description bien mise à jour.</p>";
-                }
-                $reqUp -> closeCursor();
-            }
+            $reqUp -> closeCursor();
         }
     }
 
@@ -171,12 +148,10 @@ if (isset($_POST['boutonEdit']) {
                     $maj .= "<p class='majedit'>Email bien mise à jour.</p>";
                 }
                 $reqUp -> closeCursor();
+            } else {
+                $erreurEdit .= "<p class='erreurEdit'>Cet adresse email est déjà utilisé.</p>";
             }
-            else {
-                $erreurEdit .= "<p class='erreurEdit'>Cet adresse email est déjà utilisé</p>";
-            }
-        }
-        else {
+        } else {
             $erreurEdit .= "<p class='erreurEdit'>Format incorrect d'adresse email.</p>";
         }
     }
@@ -187,39 +162,17 @@ if (isset($_POST['boutonEdit']) {
     if (!empty($_POST['tel'])) {
         $tel = valid_donnees($_POST['tel']);
 
-        if (preg_match("^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$", $tel)) {
+        if (preg_match("^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$^", $tel)) {
+            $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET numero = '$tel' WHERE id_utilisateur = $id");
+            $ok = $reqUp -> execute();
 
-            $reqS = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
-            $reqS -> execute();
-            if ($reqS -> rowCount() == 0) {
-
-                $reqI = $connection -> prepare("INSERT INTO piikti_users_meta (id_utilisateur, tel) VALUES (:id_utilisateur, IS:tel)");
-
-                $ok = $reqI -> execute([
-                    'id_utilisateur' => $id,
-                    'numero' => $tel,
-                ]);
-
-                if ($ok) {
-                    $maj .= "<p class='majedit'>Numéro de téléphone bien mise à jour.</p>";
-                }
-
-                $reqI -> closeCursor();
-
+            if ($ok) {
+                $maj .= "<p class='majedit'>Numéro de téléphone bien mise à jour.</p>";
             }
-            else {
-                $reqUp = $connection -> prepare("UPDATE piikti_users_meta SET numero = '$tel' WHERE id_utilisateur = $id");
-                $ok = $reqUp -> execute();
-
-                if ($ok) {
-                    $maj .= "<p class='majedit'>Numéro de téléphone bien mise à jour.</p>";
-                }
-                $reqUp -> closeCursor();
-            }
-
-        }
-        else {
+            $reqUp -> closeCursor();
+        } else {
             $erreurEdit .= "<p class='erreurEdit'>Veuillez rentrer un numéro de téléphone au format français.</p>";
         }
     }
+    // header('Location: edition-profile.php');
 }
