@@ -1,5 +1,7 @@
 <?php include('header.php') ?>
 <?php include('traitement-edit.php') ?>
+<?php include('edit-password.php') ?>
+
 
 <h1 class="titrePageEdition">Paramètres</h1>
 
@@ -99,17 +101,6 @@ $reqS -> closeCursor();
             </div>
 
             <div class="sousBlocEdit">
-                <label for="mdp">Mot de passe actuel</label>
-                <input type="password" name="mdpEdit">
-            </div>
-
-            <div class="sousBlocEdit">
-                <label for="mdpNew">Nouveau mot de passe</label>
-                <input type="password" name="mdpNew">
-            </div>
-
-
-            <div class="sousBlocEdit">
                 <label for="numero">Téléphone</label>
                 <input type="tel" name="tel" value="<?php echo $tel; ?>">
             </div>
@@ -122,11 +113,28 @@ $reqS -> closeCursor();
                 </select>
             </div>
 
-
-            <button type="submit" name="boutonEdit" class="boutonEdit"><?php echo strtoupper('modifier') ?></button>
+            <div class="blocBoutonEdit">
+                <button type="reset" name="boutonReset" class="boutonReset"><?php echo strtoupper('annuler') ?></button>
+                <button type="submit" name="boutonEdit" class="boutonEdit"><?php echo strtoupper('sauvegarder') ?></button>
+            </div>
 
         </div>
 
+    </form>
+
+    <form class="formEditPassword" method="post">
+        <legend class="titreEditPassword">Changer votre mot de passe :</legend>
+        <div class="sousBlocEdit">
+            <label for="mdp">Mot de passe actuel</label>
+            <input type="password" name="mdpEdit">
+        </div>
+
+        <div class="sousBlocEdit">
+            <label for="mdpNew">Nouveau mot de passe</label>
+            <input type="password" name="mdpNew">
+        </div>
+
+        <button type="submit" name="buttonMdp" class="boutonMdp"><?php echo strtoupper('valider') ?></button>
     </form>
 
     <div class="msgEdit">

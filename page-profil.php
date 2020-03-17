@@ -68,12 +68,24 @@ $metaReq -> closeCursor();
 
             <p class='ageCreateursProfil'><?php echo $age; ?> ans</p>
             <p class="nbProduitCreateur">4 création(s) mises en ligne</p>
-            <p class="emailCreateur"><?php echo $mail; ?></p>
+            <a href="mailto: <?php echo $mail; ?>"class="emailCreateur"><?php echo $mail; ?></p>
             <!-- <div class="logoRSProfil">
                 <img src="logo/facebook.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
                 <img src="logo/instagram.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
                 <img src="logo/pinterest.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
             </div> -->
+        </div>
+        <div class="blocBoutonUser">
+            <?php
+            if (isset($_SESSION['loginsession'])) {
+                ?>
+                <a href="ajout-produits.php" class="lienAjoutProduit"><i class="fas fa-plus-circle"></i><p>Ajouter un nouveau produit</p></a>
+
+                <a href="edition-profile.php" class="lienSetting"><i class="fas fa-cog"></i><p>Paramètres</p></a>
+                <?php
+            }
+            ?>
+
         </div>
     </div>
 
