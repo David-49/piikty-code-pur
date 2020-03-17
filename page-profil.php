@@ -107,7 +107,7 @@ $metaReq -> closeCursor();
             <?php
             if (isset($_SESSION['loginsession'])) {
                 ?>
-                <a href="ajout-produits.php" class="lienAjoutProduit"><i class="fas fa-plus-circle"></i><p>Ajouter un nouveau produit</p></a>
+                <a href="ajout_produits.php" class="lienAjoutProduit"><i class="fas fa-plus-circle"></i><p>Ajouter un nouveau produit</p></a>
 
                 <a href="edition-profile.php" class="lienSetting"><i class="fas fa-cog"></i><p>Paramètres</p></a>
                 <?php
@@ -130,7 +130,7 @@ $metaReq -> closeCursor();
 
 <div class="espaceCommentaire">
     <h2 class="titreEspaceCom">Laisser un commentaire à <?php echo  $prenom." ".strtoupper($nom); ?> ?</h2>
-    <?php include('comments.php') ?>
+    <?php include('template/comments.php') ?>
 </div>
 
 

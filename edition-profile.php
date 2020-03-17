@@ -1,6 +1,6 @@
 <?php include('header.php') ?>
-<?php include('traitement-edit.php') ?>
-<?php include('edit-password.php') ?>
+<?php include('traitement/traitement-edit.php') ?>
+<?php include('traitement/edit-password.php') ?>
 
 
 <h1 class="titrePageEdition">Paramètres</h1>
