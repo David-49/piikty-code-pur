@@ -27,11 +27,17 @@ if ($reqS -> rowCount() == 1) {
         $desc = $ligne -> description;
         $tel = $ligne -> numero;
         $pathPhoto = $ligne -> chemin_photo_profile;
+        $fbLien = $ligne -> facebook_lien;
+        $instaLien = $ligne -> instagram_lien;
+        $pintLien = $ligne -> pinterest_lien;
     }
 } else {
     $desc  = "";
     $tel = "";
     $pathPhoto = "";
+    $fbLien = "";
+    $instaLien = "";
+    $pintLien = "";
 }
 
 $reqS -> closeCursor();
@@ -81,17 +87,17 @@ $reqS -> closeCursor();
 
             <div class="sousBlocEdit">
                 <label for="facebook">Facebook</label>
-                <input type="text" name="facebookEdit">
+                <input type="text" name="facebookEdit" value="<?php echo $fbLien; ?>">
             </div>
 
             <div class="sousBlocEdit">
                 <label for="instagram">Instagram</label>
-                <input type="text" name="instaEdit">
+                <input type="text" name="instaEdit" value="<?php echo $instaLien; ?>">
             </div>
 
             <div class="sousBlocEdit">
                 <label for="pinterest">Pinterest</label>
-                <input type="text" name="pintEdit">
+                <input type="text" name="pintEdit" value="<?php echo $pintLien; ?>">
             </div>
 
 

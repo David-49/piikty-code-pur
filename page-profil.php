@@ -37,10 +37,16 @@ if ($metaReq -> rowCount() == 1) {
     while ($ligne = $metaReq -> fetch()) {
         $desc = $ligne -> description;
         $pathPhoto = $ligne -> chemin_photo_profile;
+        $fbLien = $ligne -> facebook_lien;
+        $instaLien = $ligne -> instagram_lien;
+        $pintLien = $ligne -> pinterest_lien;
     }
 } else {
     $desc  = "";
     $pathPhoto = "";
+    $fbLien = "";
+    $instaLien = "";
+    $pintLien = "";
 }
 
 $metaReq -> closeCursor();
@@ -69,11 +75,33 @@ $metaReq -> closeCursor();
             <p class='ageCreateursProfil'><?php echo $age; ?> ans</p>
             <p class="nbProduitCreateur">4 création(s) mises en ligne</p>
             <a href="mailto: <?php echo $mail; ?>"class="emailCreateur"><?php echo $mail; ?></p>
-            <!-- <div class="logoRSProfil">
-                <img src="logo/facebook.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
-                <img src="logo/instagram.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
-                <img src="logo/pinterest.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
-            </div> -->
+
+            <div class="logoRSProfil">
+            <?php
+            if ($fbLien != "") {
+                ?>
+                <a href="<?php echo $fbLien; ?>">
+                    <img src="logo/facebook.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
+                </a>
+            <?php
+            }
+            if ($instaLien != "") {
+                ?>
+                <a href="<?php echo $instaLien; ?>">
+                    <img src="logo/instagram.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
+                </a>
+            <?php
+            }
+
+            if ($pintLien != "") {
+                ?>
+                <a href="<?php echo $pintLien; ?>">
+                    <img src="logo/pinterest.svg" alt="Logo" alt="logo réseaux sociaux" class="reseauSociauxProfil">
+                </a>
+            <?php
+            }
+            ?>
+            </div>
         </div>
         <div class="blocBoutonUser">
             <?php

@@ -195,7 +195,57 @@ if (isset($_SESSION['loginsession'])) {
                 $erreurEdit .= "<p class='erreurEdit'>Veuillez rentrer un numéro de téléphone au format français.</p>";
             }
         }
-        // header('Location: edition-profile.php');
+
+        if (!empty($_POST['facebookEdit'])) {
+            $fb = valid_donnees($_POST['facebookEdit']);
+
+            if (filter_var($fb, FILTER_VALIDATE_URL)) {
+                $ins = $connection -> prepare("UPDATE piikti_users_meta SET facebook_lien = '$fb' WHERE id_utilisateur = $id");
+
+                $ok = $ins -> execute();
+
+                if ($ok) {
+                    $maj .= "<p class='majedit'>Lien Facebook bien mise à jour.</p>";
+                }
+                $ins -> closeCursor();
+            } else {
+                $erreurEdit .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
+            }
+        }
+
+        if (!empty($_POST['instaEdit'])) {
+            $insta = valid_donnees($_POST['instaEdit']);
+
+            if (filter_var($insta, FILTER_VALIDATE_URL)) {
+                $ins = $connection -> prepare("UPDATE piikti_users_meta SET instagram_lien = '$insta' WHERE id_utilisateur = $id");
+
+                $ok = $ins -> execute();
+
+                if ($ok) {
+                    $maj .= "<p class='majedit'>Lien Instagram bien mise à jour.</p>";
+                }
+                $ins -> closeCursor();
+            } else {
+                $erreurEdit .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
+            }
+        }
+
+        if (!empty($_POST['pintEdit'])) {
+            $pint = valid_donnees($_POST['pintEdit']);
+
+            if (filter_var($pint, FILTER_VALIDATE_URL)) {
+                $ins = $connection -> prepare("UPDATE piikti_users_meta SET pinterest_lien = '$pint' WHERE id_utilisateur = $id");
+
+                $ok = $ins -> execute();
+
+                if ($ok) {
+                    $maj .= "<p class='majedit'>Lien Pinterest bien mise à jour.</p>";
+                }
+                $ins -> closeCursor();
+            } else {
+                $erreurEdit .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
+            }
+        }
     }
 } else {
     header('Location: index.php');
