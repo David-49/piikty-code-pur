@@ -986,10 +986,16 @@ body {
 }
 
 /*******************************************************************************/
-/*                             Personnalisation input file                     */
+/*                             Personnalisation page ajout produits            */
 /*******************************************************************************/
 .containerAjoutProduit {
     padding: 60px;
+    display: flex;
+}
+
+.msgLogProduit {
+    align-self: flex-start;
+    margin-left: 30px;
 }
 
 .titreAjoutProduit {
@@ -1008,9 +1014,10 @@ body {
 }
 
 .separationVetical {
-    height: 100%;
+    height: 60%;
     width: 8px;
     background-color: #ee6e6b;
+    align-self: flex-start;
 }
 
 .blocGaucheProduit, .blocDroitProduit {
@@ -1021,10 +1028,6 @@ body {
     width: 98%;
     display: flex;
     flex-direction: column;
-}
-
-.blocRadio {
-    display: flex;
 }
 
 .formAjoutProduit input {
@@ -1049,6 +1052,49 @@ body {
     margin-top: 15px;
 }
 
+.containerPhotoProduit {
+    margin-top: 100px;
+}
+
+.blocImageProduit {
+    height: 400px;
+    width: 350px;
+}
+
+.blocInputPhotoProduit {
+    width: 225px;
+    position: relative;
+}
+
+.js .labelProduitPhoto {
+    display: block;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 8px;
+    background-color: #ee6e6b;
+    cursor: pointer;
+    text-align: center;
+}
+
+.js .inputProduitPhoto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 225px;
+    opacity: 0;
+    padding: 14px 0;
+    cursor: pointer;
+}
+
+.ajoutPhotoProduit {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .boutonProduit {
     width: 40%;
     height: 50px;
@@ -1062,19 +1108,24 @@ body {
     cursor: pointer;
 }
 
+.taille-produit {
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+}
+
+.blocRadio {
+    display: flex;
+}
+
+/**************************************************************************/
+/*                          Custom checkbox taille S                      */
+/**************************************************************************/
 /* Cachons la case à cocher */
 p.containerRadio {
     position: relative;
     /* permet de positionner la checkbox cachée */
 }
 
-.radioTaille, .labelRadio {
-    cursor: pointer;
-}
-
-/**************************************************************************/
-/*                          Custom checkbox taille S                      */
-/**************************************************************************/
 .radioS:not(:checked),
 .radioS:checked {
     /* Cache la checkbox sans
@@ -1093,7 +1144,7 @@ p.containerRadio {
     font-size: 2rem;
     /* Label un peu plus gros */
     line-height: 2;
-    label cursor: pointer;
+    cursor: pointer;
     /* affiche un curseur adapté */
 }
 
@@ -1125,12 +1176,12 @@ p.containerRadio {
 }
 
 /* Aspect non cochée */
-.radioS:not(:checked)+.label-S:after {
+.radioTaille:not(:checked)+.labelRadio:after {
     opacity: 0;
 }
 
 /* Aspect cochée */
-.radioS:checked+.label-S:after {
+.radioTaille:checked+.labelRadio:after {
     opacity: 1;
     background-color: #ee6e6b;
     width: 45px;
@@ -1159,7 +1210,7 @@ p.containerRadio {
     font-size: 2rem;
     /* Label un peu plus gros */
     line-height: 2;
-    label cursor: pointer;
+    cursor: pointer;
     /* affiche un curseur adapté */
 }
 
@@ -1190,20 +1241,18 @@ p.containerRadio {
     color: #FFFFFF;
 }
 
-/* Aspect non cochée */
-.radioM:not(:checked)+.label-M:after {
+/* .radioM:not(:checked)+.label-M:after {
     opacity: 0;
 }
 
-/* Aspect cochée */
+
 .radioM:checked+.label-M:after {
     opacity: 1;
     background-color: #ee6e6b;
     width: 45px;
     height: 46px;
     text-align: center;
-}
-
+} */
 /**************************************************************************/
 /*                          Custom checkbox taille L                      */
 /**************************************************************************/
@@ -1256,16 +1305,16 @@ p.containerRadio {
     color: #FFFFFF;
 }
 
-/* Aspect non cochée */
+/*
 .radioL:not(:checked)+.label-L:after {
     opacity: 0;
 }
 
-/* Aspect cochée */
+
 .radioL:checked+.label-L:after {
     opacity: 1;
     background-color: #ee6e6b;
     width: 45px;
     height: 46px;
     text-align: center;
-}
+} */

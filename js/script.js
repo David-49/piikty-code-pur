@@ -24,6 +24,8 @@ $(function(){
       $('#blocInscription').toggle(10);
     });
 
+
+    //Personnalisation pour la page paramètre
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -40,10 +42,45 @@ $(function(){
         readURL(this);
     });
 
+    //Personnalisation pour la page ajout produit
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#photoProduit').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInptProduit").change(function(){
+        readURL(this);
+    });
+
+    //Personnalisation pour la page paramètre
     document.querySelector("html").classList.add('js');
 
     var fileInput  = document.querySelector( ".input-file" ),
         button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+    button.addEventListener( "keydown", function( event ) {
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+            fileInput.focus();
+        }
+    });
+    button.addEventListener( "click", function( event ) {
+       fileInput.focus();
+       return false;
+    });
+
+    //Personnalisation pour la page ajout produit
+    document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".inputProduitPhoto" ),
+        button     = document.querySelector( ".labelProduitPhoto" ),
         the_return = document.querySelector(".file-return");
 
     button.addEventListener( "keydown", function( event ) {
