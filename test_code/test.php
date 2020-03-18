@@ -58,6 +58,18 @@ if (!empty($_POST['tailleL'])) {
     }
 }
 
+if (!empty($_POST['tailleS']) || !empty($_POST['tailleM']) || !empty($_POST['tailleL'])) {
+    $tailleS = "";
+    $tailleM = "";
+    $tailleL = "";
+
+    $tailleS = $_POST['tailleS'];
+    $tailleM = $_POST['tailleM'];
+    $tailleL = $_POST['tailleL'];
+
+    //insertion bdd
+}
+
 
 ?>
     </body>
