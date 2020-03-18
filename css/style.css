@@ -1350,7 +1350,7 @@ p.containerRadio {
 }
 
 .sideBarProduit {
-    width: 30%;
+    width: 25%;
     padding: 10px;
     margin-left: 120px;
 }
@@ -1375,17 +1375,23 @@ p.containerRadio {
     margin-top: 25px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.cat-rouge {
+    color: #ee6e6b;
 }
 
 .wrapProduit {
-    width: 60%;
-    /* display: flex;
-    flex-wrap: wrap; */
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     margin-top: 40px;
 }
 
 .blocProduit {
-    width: 277px;
+    margin: 0 60px 60px 60px;
 }
 
 .blocNomProduit {
@@ -1399,10 +1405,11 @@ p.containerRadio {
 }
 
 .photoProduitAffichage {
-    height: 100%;
+    /* height: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center; */
+    width: 277px;
 }
 
 .inFoProduit {
