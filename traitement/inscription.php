@@ -1,5 +1,7 @@
+<?php session_start(); ?>
+<?php include('../BDD/PDO/connection_bdd.php'); ?>
+<?php include('data-cleaning.php'); ?>
 <?php
-  $erreurIns = "";
 if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['nom']) and !empty($_POST['mailInscription']) and !empty($_POST['mdpInscription'])) {
     $prenom = valid_donnees($_POST['prenom']);
     $nom = valid_donnees($_POST['nom']);
@@ -46,25 +48,29 @@ if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['no
                                 'date_inscription' => $date,
                             ]);
 
+                            //on récupère le dernier id
+                            $lastId = $connection -> lastInsertId();
+
                             if ($ok) {
                                 $_SESSION['loginsession'] = $_POST['mailInscription'];
-                                header('Location: edition-profile.php');
+                                $_SESSION['idsession'] = $lastId;
+                                header('Location: ../edition-profile.php');
                             }
                         } else {
-                            $erreurIns = "<p class='erreurInfo'>Les mots de passe ne correspondent pas !</p>";
+                            $_SESSION['erreurIns'] = "<p class='erreurInfo'>Les mots de passe ne correspondent pas !</p>";
                         }
                     } else {
-                        $erreurIns = "<p class='erreurInfo'>Cet adresse email est déjà utilisé. Veuillez en choisir une autres.</p>";
+                        $_SESSION['erreurIns'] = "<p class='erreurInfo'>Cet adresse email est déjà utilisé. Veuillez en choisir une autres.</p>";
                     }
                 } else {
-                    $erreurIns = "<p class='erreurInfo'>Veuillez rentrer une adresse email.</p>";
+                    $_SESSION['erreurIns'] = "<p class='erreurInfo'>Veuillez rentrer une adresse email.</p>";
                 }
             } else {
-                $erreurIns = "<p class='erreurInfo'>Votre nom dépasse la limite des 255 caractères. Veuillez choisir un autres nom.</p>";
+                $_SESSION['erreurIns'] = "<p class='erreurInfo'>Votre nom dépasse la limite des 255 caractères. Veuillez choisir un autres nom.</p>";
             }
         } else {
-            $erreurIns = "<p class='erreurInfo'>Votre prenom dépasse la limite des 255 caractères. Veuillez choisir un autres prenom.</p>";
+            $_SESSION['erreurIns'] = "<p class='erreurInfo'>Votre prenom dépasse la limite des 255 caractères. Veuillez choisir un autres prenom.</p>";
         }
     }
-    $erreurIns = "<p class='erreurInfo'>Vous devez être majeure pour vous inscrire</p>";
+    $_SESSION['erreurIns'] = "<p class='erreurInfo'>Vous devez être majeure pour vous inscrire</p>";
 }

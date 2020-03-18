@@ -1,17 +1,12 @@
+<?php session_start(); ?>
+<?php include('../BDD/PDO/connection_bdd.php'); ?>
+<?php include('data-cleaning.php'); ?>
 <?php
+if (isset($_SESSION['idsession'])) {
+    $id= $_SESSION['idsession'];
 
-$maj = "";
-$erreurEdit = "";
-if (isset($_SESSION['loginsession'])) {
-    $login = $_SESSION['loginsession'];
-
-
-    $reqS = $connection -> prepare("SELECT * FROM piikti_users WHERE mail= '$login'");
-    $reqS -> execute();
-
-    while ($ligne = $reqS -> fetch()) {
-        $id = $ligne -> id;
-    }
+    $_SESSION['maj'] = "";
+    $_SESSION['erreurEdit'] = "";
 
 
     if (isset($_POST['boutonEdit'])) {
@@ -20,7 +15,7 @@ if (isset($_SESSION['loginsession'])) {
         if ($reqS -> rowCount() == 0) {
             $reqI = $connection -> prepare("INSERT INTO piikti_users_meta (id_utilisateur) VALUES (:id_utilisateur)");
 
-            $reqI -> execute([
+            $ok = $reqI -> execute([
                 'id_utilisateur' => $id,
             ]);
 
@@ -64,12 +59,12 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $reqUp -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Photo de profile bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Photo de profile bien mise à jour.</p>";
                 }
 
                 $reqUp -> closeCursor();
             } else {
-                $erreurEdit .= "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
+                $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
             }
         }
 
@@ -86,7 +81,7 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $reqUp -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Nom bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Nom bien mise à jour.</p>";
                 }
                 $reqUp -> closeCursor();
             }
@@ -104,7 +99,7 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $reqUp -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Prenom bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Prenom bien mise à jour.</p>";
                 }
                 $reqUp -> closeCursor();
             }
@@ -121,7 +116,7 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $reqUp -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Description bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Description bien mise à jour.</p>";
                 }
                 $reqUp -> closeCursor();
             }
@@ -157,15 +152,15 @@ if (isset($_SESSION['loginsession'])) {
 
                         if ($ok) {
                             $_SESSION['loginsession'] = $mailEdit;
-                            $maj .= "<p class='majedit'>Email bien mise à jour.</p>";
+                            $_SESSION['maj'] .= "<p class='majedit'>Email bien mise à jour.</p>";
                         }
                         $reqUp -> closeCursor();
                     } else {
-                        $erreurEdit .= "<p class='erreurEdit'>Cet adresse email est déjà utilisé.</p>";
+                        $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Cet adresse email est déjà utilisé.</p>";
                     }
                 }
             } else {
-                $erreurEdit .= "<p class='erreurEdit'>Format incorrect d'adresse email.</p>";
+                $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Format incorrect d'adresse email.</p>";
             }
         }
 
@@ -180,11 +175,11 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $reqUp -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Numéro de téléphone bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Numéro de téléphone bien mise à jour.</p>";
                 }
                 $reqUp -> closeCursor();
             } else {
-                $erreurEdit .= "<p class='erreurEdit'>Veuillez rentrer un numéro de téléphone au format français.</p>";
+                $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Veuillez rentrer un numéro de téléphone au format français.</p>";
             }
         }
 
@@ -197,11 +192,11 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $ins -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Lien Facebook bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Lien Facebook bien mise à jour.</p>";
                 }
                 $ins -> closeCursor();
             } else {
-                $erreurEdit .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
+                $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
             }
         }
 
@@ -214,11 +209,11 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $ins -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Lien Instagram bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Lien Instagram bien mise à jour.</p>";
                 }
                 $ins -> closeCursor();
             } else {
-                $erreurEdit .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
+                $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
             }
         }
 
@@ -231,12 +226,13 @@ if (isset($_SESSION['loginsession'])) {
                 $ok = $ins -> execute();
 
                 if ($ok) {
-                    $maj .= "<p class='majedit'>Lien Pinterest bien mise à jour.</p>";
+                    $_SESSION['maj'] .= "<p class='majedit'>Lien Pinterest bien mise à jour.</p>";
                 }
                 $ins -> closeCursor();
             } else {
-                $erreurEdit .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
+                $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
             }
         }
+        header('Location: ../edition-profile.php');
     }
 }

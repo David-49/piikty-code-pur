@@ -1,6 +1,7 @@
+<?php session_start(); ?>
+<?php include('../BDD/PDO/connection_bdd.php'); ?>
+<?php include('data-cleaning.php'); ?>
 <?php
-$erreurCo = "";
-
 if (isset($_POST['buttonCo']) && !empty($_POST['mailConnect']) && !empty($_POST['mdpConnect'])) {
     $mail =  valid_donnees($_POST['mailConnect']);
     $mdp = $_POST['mdpConnect'];
@@ -10,16 +11,18 @@ if (isset($_POST['buttonCo']) && !empty($_POST['mailConnect']) && !empty($_POST[
 
     if ($reqS -> rowCount() == 1) {
         while ($ligne = $reqS -> fetch()) {
+            $id = $ligne -> id;
             $hash = $ligne -> mdp;
         }
 
         if (password_verify($mdp, $hash)) {
             $_SESSION['loginsession'] = $_POST['mailConnect'];
-            header('Location: index.php');
+            $_SESSION['idsession'] = $id;
+            header('Location: '.$_SERVER['HTTP_REFERER']);
         } else {
-            $erreurCo = "<p class='erreurInfo'>Le mot de passe est incorrect !</p>";
+            $_SESSION['erreurCo'] = "<p class='erreurInfo'>Le mot de passe est incorrect !</p>";
         }
     } else {
-        $erreurCo = "<p class='erreurInfo'>Cet email n'existe pas dans notre base de données.</p>";
+        $_SESSION['erreurCo'] = "<p class='erreurInfo'>Cet email n'existe pas dans notre base de données.</p>";
     }
 }

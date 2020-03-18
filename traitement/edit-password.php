@@ -1,9 +1,13 @@
+<?php session_start(); ?>
+<?php include('../BDD/PDO/connection_bdd.php'); ?>
 <?php
 
 $mailVerifMdp = $_SESSION['loginsession'];
 
 if (isset($_POST['buttonMdp']) && !empty($_POST['mdpEdit']) && !empty($_POST['mdpNew'])) {
-    $mdpEdit =  valid_donnees($_POST['mdpEdit']);
+    $_SESSION['maj'] = "";
+    $_SESSION['erreurEdit'] = "";
+    $mdpEdit =  $_POST['mdpEdit'];
     $mdpNew = $_POST['mdpNew'];
 
     $reqS = $connection -> prepare("SELECT * FROM piikti_users WHERE mail = '$mailVerifMdp'");
@@ -21,9 +25,11 @@ if (isset($_POST['buttonMdp']) && !empty($_POST['mdpEdit']) && !empty($_POST['md
         $ok = $insert -> execute();
 
         if ($ok) {
-            $maj .= "<p class='majedit'>Mot de passe bien mise à jour.</p>";
+            $_SESSION['maj'] .= "<p class='majedit'>Mot de passe bien mise à jour.</p>";
+            header('Location: ../edition-profile.php');
         }
     } else {
-        $erreurEdit .= "<p class='erreurInfo'>Le mot de passe est incorrect !</p>";
+        $_SESSION['erreurEdit'] .= "<p class='erreurInfo'>Le mot de passe est incorrect !</p>";
+        header('Location: ../edition-profile.php');
     }
 }

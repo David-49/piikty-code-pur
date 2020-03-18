@@ -1,8 +1,19 @@
-<?php session_start(); ?>
 <?php include('BDD/PDO/connection_bdd.php'); ?>
-<?php include('traitement/data-cleaning.php'); ?>
-<?php include('traitement/connexion.php'); ?>
-<?php include('traitement/inscription.php'); ?>
+<?php
+ //initialisation variable message log
+ if (isset($_SESSION['erreurCo'])) {
+     $erreurCo = $_SESSION['erreurCo'];
+ } else {
+     $erreurCo = "";
+ }
+
+ if (isset($_SESSION['erreurIns'])) {
+     $erreurIns = $_SESSION['erreurIns'];
+ } else {
+     $erreurIns = "";
+ }
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -24,7 +35,7 @@
           <div class="croix" id="closeConnect">
               <span></span>
           </div>
-          <form class="formConnexion" method="post">
+          <form class="formConnexion" action="traitement/connexion.php" method="post">
               <legend class="legendConnexion"><?php echo strtoupper('connexion') ?></legend>
 
               <div class="blocInfo">
@@ -52,7 +63,7 @@
           </div>
 
 
-          <form class="formConnexion" method="post">
+          <form class="formConnexion" action="traitement/inscription.php" method="post">
               <legend class="legendConnexion"><?php echo strtoupper('inscription') ?></legend>
 
               <div class="blocInfo">
@@ -108,7 +119,7 @@
                 if (isset($_SESSION['loginsession'])) {
                     ?>
                     <a href="page-profil.php" class="lienProfil"><?php echo strtoupper('mon profil'); ?></a>
-                    <a href="deconnexion.php" class="boutonDeco"><?php echo strtoupper('deconnexion') ?></a>
+                    <a href="traitement/deconnexion.php" class="boutonDeco"><?php echo strtoupper('deconnexion') ?></a>
 
                 <?php
                 } else {

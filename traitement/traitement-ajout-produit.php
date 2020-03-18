@@ -1,10 +1,10 @@
+<?php session_start(); ?>
+<?php include('../BDD/PDO/connection_bdd.php'); ?>
+<?php include('data-cleaning.php'); ?>
 <?php
 
-$enregistrer = "";
-$erreurProduit = "";
-
-if (isset($_SESSION['loginsession'])) {
-    $login = $_SESSION['loginsession'];
+if (isset($_SESSION['idsession'])) {
+    $id = $_SESSION['idsession'];
 
 
     $reqUnique = $connection -> prepare("SELECT * FROM piikti_users WHERE mail= '$login'");
@@ -108,25 +108,25 @@ if (isset($_SESSION['loginsession'])) {
 
 
                                 if ($ok) {
-                                    $enregistrer = "<p>Votre produit est bien enregistré</p>";
+                                    $_SESSION['enregistrer'] = "<p>Votre produit est bien enregistré</p>";
                                 }
                             } else {
-                                $erreurProduit = "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
+                                $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
                             }
                         } else {
-                            $erreurProduit = "<p class='erreurEdit'>La catégorie dépasse la limite des 255 caractères.</p>";
+                            $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La catégorie dépasse la limite des 255 caractères.</p>";
                         }
                     } else {
-                        $erreurProduit = "<p class='erreurEdit'>La valeur que vous avez rentré ne correspond pas à un format prix.</p>";
+                        $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La valeur que vous avez rentré ne correspond pas à un format prix.</p>";
                     }
                 } else {
-                    $erreurProduit = "<p class='erreurEdit'>La description dépasse la limite des 1000 caractères</p>";
+                    $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La description dépasse la limite des 1000 caractères</p>";
                 }
             } else {
-                $erreurProduit = "<p class='erreurEdit'>Il y'a déjà un produit avec ce nom là.</p>";
+                $_SESSION['erreurProduit'] = "<p class='erreurEdit'>Il y'a déjà un produit avec ce nom là.</p>";
             }
         } else {
-            $erreurProduit = "<p class='erreurEdit'>Le nom dépasse la limite des 255 caractères.</p>";
+            $_SESSION['erreurProduit'] = "<p class='erreurEdit'>Le nom dépasse la limite des 255 caractères.</p>";
         }
     }
 }

@@ -1,10 +1,25 @@
-<?php include('header.php') ?>
+<?php session_start(); ?>
 <?php
-if (!isset($_SESSION['loginsession'])) {
+if (!isset($_SESSION['idsession'])) {
     header('Location: index.php');
+    exit;
 }
+
+//initialisation variable message log
+if (isset($_SESSION['enregistrer'])) {
+    $enregistrer = $_SESSION['enregistrer'];
+} else {
+    $enregistrer = "";
+}
+
+if (isset($_SESSION['erreurProduit'])) {
+    $erreurProduit = $_SESSION['erreurProduit'];
+} else {
+    $erreurProduit = "";
+}
+
 ?>
-<?php include('traitement/traitement-ajout-produit.php') ?>
+<?php include('header.php'); ?>
 
 <?php
 
@@ -51,7 +66,7 @@ if (!isset($_SESSION['loginsession'])) {
 <h1 class="titreAjoutProduit"><?php echo strtoupper('partager') ?></h1>
 <div class="containerAjoutProduit">
 
-    <form class="formAjoutProduit"  method="post" enctype="multipart/form-data">
+    <form class="formAjoutProduit" action="traitement/traitement-ajout-produit.php"  method="post" enctype="multipart/form-data">
 
     <div class="blocGaucheProduit">
 
@@ -134,4 +149,4 @@ if (!isset($_SESSION['loginsession'])) {
 
 
 
-<?php include('footer.php') ?>
+<?php include('footer.php'); ?>

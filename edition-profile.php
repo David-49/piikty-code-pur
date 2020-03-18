@@ -1,11 +1,24 @@
-<?php include('header.php') ?>
+<?php session_start(); ?>
 <?php
 if (!isset($_SESSION['loginsession'])) {
     header('Location: index.php');
+    exit;
+}
+
+//initialisation variable message log
+if (isset($_SESSION['maj'])) {
+    $maj = $_SESSION['maj'];
+} else {
+    $maj = "";
+}
+
+if (isset($_SESSION['erreurEdit'])) {
+    $erreurEdit = $_SESSION['erreurEdit'];
+} else {
+    $erreurEdit = "";
 }
 ?>
-<?php include('traitement/traitement-edit.php') ?>
-<?php include('traitement/edit-password.php') ?>
+<?php include('header.php'); ?>
 
 
 <h1 class="titrePageEdition">Paramètres</h1>
@@ -50,7 +63,7 @@ $reqS -> closeCursor();
 
 <div class="wrapEdit">
 
-    <form class="containerForm" method="post"  enctype="multipart/form-data">
+    <form class="containerForm" action="traitement/traitement-edit.php" method="post"  enctype="multipart/form-data">
 
         <div class="blocPreview">
             <div class="blocPhotoEdition">
@@ -133,7 +146,7 @@ $reqS -> closeCursor();
 
     </form>
 
-    <form class="formEditPassword" method="post">
+    <form class="formEditPassword" action="traitement/edit-password.php" method="post">
         <legend class="titreEditPassword">Changer votre mot de passe :</legend>
         <div class="sousBlocEdit">
             <label for="mdp">Mot de passe actuel</label>
@@ -158,4 +171,4 @@ $reqS -> closeCursor();
 <!-- fin wrap -->
 
 
-<?php include('footer.php') ?>
+<?php include('footer.php'); ?>
