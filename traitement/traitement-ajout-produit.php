@@ -7,13 +7,6 @@ if (isset($_SESSION['idsession'])) {
     $id = $_SESSION['idsession'];
 
 
-    $reqUnique = $connection -> prepare("SELECT * FROM piikti_users WHERE mail= '$login'");
-    $reqUnique -> execute();
-
-    while ($ligne = $reqUnique -> fetch()) {
-        $id = $ligne -> id;
-    }
-
     // var_dump(
     //     $_POST['buttonProduit'],
     //     $_POST['nomProduit'],
@@ -29,11 +22,13 @@ if (isset($_SESSION['idsession'])) {
     && !empty($_POST['nomProduit'])
     && !empty($_POST['descProduit'])
     && !empty($_POST['prixProduit'])
+    && !empty($_POST['sexeProduit'])
     && !empty($_POST['catProduit'])
     && !empty($_FILES['photoProduitInpt'])) {
         $nomProduit = valid_donnees($_POST['nomProduit']);
         $descProduit = valid_donnees($_POST['descProduit']);
         $prixProduit = valid_donnees($_POST['prixProduit']);
+        $sexeProduit = valid_donnees($_POST['sexeProduit']);
         $catProduit = valid_donnees($_POST['catProduit']);
 
         // var_dump($nomProduit, $descProduit, $prixProduit, $catProduit);
@@ -56,77 +51,90 @@ if (isset($_SESSION['idsession'])) {
             if ($reqS -> rowCount() == 0) {
                 if (strlen($descProduit) < 1001) {
                     if (preg_match("^[0-9]+(.[0-9]+)?$^", $prixProduit)) {
-                        if (strlen($catProduit)) {
-                            if ($info == ".jpg" || $info == ".jpeg" && $taille <= 2000000) {
-                                $tailleS = null;
-                                $tailleM = null;
-                                $tailleL = null;
-                                if (!empty($_POST['tailleS'])) {
-                                    $tailleS = valid_donnees($_POST['tailleS']);
-                                }
-                                if (!empty($_POST['tailleM'])) {
-                                    $tailleM = valid_donnees($_POST['tailleM']);
-                                }
-                                if (!empty($_POST['tailleL'])) {
-                                    $tailleL = valid_donnees($_POST['tailleL']);
-                                }
+                        if (strlen($sexeProduit) < 256) {
+                            if (strlen($catProduit) < 256) {
+                                if ($info == ".jpg" || $info == ".jpeg" && $taille <= 2000000) {
+                                    $tailleS = null;
+                                    $tailleM = null;
+                                    $tailleL = null;
+                                    if (!empty($_POST['tailleS'])) {
+                                        $tailleS = valid_donnees($_POST['tailleS']);
+                                    }
+                                    if (!empty($_POST['tailleM'])) {
+                                        $tailleM = valid_donnees($_POST['tailleM']);
+                                    }
+                                    if (!empty($_POST['tailleL'])) {
+                                        $tailleL = valid_donnees($_POST['tailleL']);
+                                    }
 
-                                //on déplace le fichier dans notre serveur
-                                move_uploaded_file($temp_name, $destination);
+                                    //on déplace le fichier dans notre serveur
+                                    move_uploaded_file($temp_name, $destination);
 
-                                $req1 = $connection -> prepare("INSERT INTO piikti_produit (id_utilisateur, nom_produit, desc_produit, prix_produit, cat_produit, tailleS, tailleM, tailleL, chemin_photo_produit) VALUES (:id_utilisateur, :nom_produit, :desc_produit, :prix_produit, :cat_produit, :tailleS, :tailleM, :tailleL, :chemin_photo_produit)");
+                                    $req1 = $connection -> prepare("INSERT INTO piikti_produit (id_utilisateur, nom_produit, desc_produit, prix_produit, sexe_produit, cat_produit, tailleS, tailleM, tailleL, chemin_photo_produit) VALUES (:id_utilisateur, :nom_produit, :desc_produit, :prix_produit, :sexe_produit, :cat_produit, :tailleS, :tailleM, :tailleL, :chemin_photo_produit)");
 
-                                $ok = $req1 -> execute([
-                                    'id_utilisateur' => $id,
-                                    'nom_produit' => $nomProduit,
-                                    'desc_produit' => $descProduit,
-                                    'prix_produit' => $prixProduit,
-                                    'cat_produit' => $catProduit,
-                                    'tailleS' => $tailleS,
-                                    'tailleM' => $tailleM,
-                                    'tailleL' => $tailleL,
-                                    'chemin_photo_produit' => $destination,
-                                ]);
+                                    $ok = $req1 -> execute([
+                                        'id_utilisateur' => $id,
+                                        'nom_produit' => $nomProduit,
+                                        'desc_produit' => $descProduit,
+                                        'prix_produit' => $prixProduit,
+                                        'sexe_produit' => $sexeProduit,
+                                        'cat_produit' => $catProduit,
+                                        'tailleS' => $tailleS,
+                                        'tailleM' => $tailleM,
+                                        'tailleL' => $tailleL,
+                                        'chemin_photo_produit' => $destination,
+                                    ]);
 
-                                $req1 -> closeCursor();
+                                    $req1 -> closeCursor();
 
-                                //on récupère le dernier id
-                                $lastId = $connection -> lastInsertId();
+                                    //on récupère le dernier id
+                                    $lastId = $connection -> lastInsertId();
 
-                                //on renomme le fichier de sorte que chaque fichier ai un nom unique avec l'id
-                                rename("../upload/photo_produits/$nomPhoto", "../upload/photo_produits/Photo_".$lastId.$info);
+                                    //on renomme le fichier de sorte que chaque fichier ai un nom unique avec l'id
+                                    rename("../upload/photo_produits/$nomPhoto", "../upload/photo_produits/Photo_".$lastId.$info);
 
-                                //on met à jour la variable avec le nouveau nom
-                                $destination = "upload/photo_produits/Photo_".$lastId.$info;
+                                    //on met à jour la variable avec le nouveau nom
+                                    $destination = "upload/photo_produits/Photo_".$lastId.$info;
 
-                                //on met à jour le nom du fichier dans la base de donnée
-                                $reqUp2 = $connection -> prepare("UPDATE piikti_produit SET chemin_photo_produit = '$destination' WHERE id = $lastId");
-                                $reqUp2 -> execute();
+                                    //on met à jour le nom du fichier dans la base de donnée
+                                    $reqUp2 = $connection -> prepare("UPDATE piikti_produit SET chemin_photo_produit = '$destination' WHERE id = $lastId");
+                                    $reqUp2 -> execute();
 
-                                $reqUp2 -> closeCursor();
+                                    $reqUp2 -> closeCursor();
 
 
 
-                                if ($ok) {
-                                    $_SESSION['enregistrer'] = "<p>Votre produit est bien enregistré</p>";
+                                    if ($ok) {
+                                        $_SESSION['enregistrer'] = "<p>Votre produit est bien enregistré</p>";
+                                        header('Location: ../ajout_produits.php');
+                                    }
+                                } else {
+                                    $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
+                                    header('Location: ../ajout_produits.php');
                                 }
                             } else {
-                                $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La photo n'est pas au format jgp ou fait plus de 2Mo.</p>";
+                                $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La catégorie dépasse la limite des 255 caractères.</p>";
+                                header('Location: ../ajout_produits.php');
                             }
                         } else {
-                            $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La catégorie dépasse la limite des 255 caractères.</p>";
+                            $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La valeur choisi pour le sexe dépasse la limite des 255 caractères.</p>";
+                            header('Location: ../ajout_produits.php');
                         }
                     } else {
                         $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La valeur que vous avez rentré ne correspond pas à un format prix.</p>";
+                        header('Location: ../ajout_produits.php');
                     }
                 } else {
                     $_SESSION['erreurProduit'] = "<p class='erreurEdit'>La description dépasse la limite des 1000 caractères</p>";
+                    header('Location: ../ajout_produits.php');
                 }
             } else {
                 $_SESSION['erreurProduit'] = "<p class='erreurEdit'>Il y'a déjà un produit avec ce nom là.</p>";
+                header('Location: ../ajout_produits.php');
             }
         } else {
             $_SESSION['erreurProduit'] = "<p class='erreurEdit'>Le nom dépasse la limite des 255 caractères.</p>";
+            header('Location: ../ajout_produits.php');
         }
     }
 }

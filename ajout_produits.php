@@ -21,48 +21,6 @@ if (isset($_SESSION['erreurProduit'])) {
 ?>
 <?php include('header.php'); ?>
 
-<?php
-
-// $login = $_SESSION['loginsession'];
-// $reqS = $connection -> prepare("SELECT * FROM piikti_users WHERE mail= '$login'");
-// $reqS -> execute();
-//
-// while ($ligne = $reqS -> fetch()) {
-//     $id = $ligne -> id;
-// }
-//
-// $reqS -> closeCursor();
-
-
-// $reqS = $connection -> prepare("SELECT * FROM piikti_produit WHERE id_utilisateur = '$id'");
-// $reqS -> execute();
-//
-// if ($reqS -> rowCount() == 1) {
-//     while ($ligne = $reqS -> fetch()) {
-//         $nomProduit = $ligne -> nom_produit;
-//         $descProduit = $ligne -> desc_produit;
-//         $prixProduit = $ligne -> prix_produit;
-//         $catProduit= $ligne -> cat_produit;
-//         $tailleS = $ligne -> tailleS;
-//         $tailleM = $ligne -> tailleM;
-//         $tailleL = $ligne -> tailleL;
-//         $pathPhoto = $ligne -> chemin_photo_produit;
-//     }
-// } else {
-//     $nomProduit = "";
-//     $descProduit  = "";
-//     $prixProduit = "";
-//     $catProduit = "";
-//     $pathPhoto = "";
-//     $tailleS = "";
-//     $tailleM = "";
-//     $tailleL = "";
-// }
-
-?>
-
-
-
 <h1 class="titreAjoutProduit"><?php echo strtoupper('partager') ?></h1>
 <div class="containerAjoutProduit">
 
@@ -91,6 +49,14 @@ if (isset($_SESSION['erreurProduit'])) {
     <div class="separationVetical"></div>
 
     <div class="blocDroitProduit">
+
+        <div class="blocChoixProduit">
+            <label for="sexe-produit">Homme/Femme</label>
+            <select class="" name="sexeProduit" required>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+        </div>
         <div class="blocChoixProduit">
             <label for="cat-produit">Catégorie</label>
             <select class="" name="catProduit" required>

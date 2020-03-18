@@ -139,9 +139,9 @@
 
         <nav class="nav">
             <ul class="site__header__menu">
-                <li><a href=""><?php echo strtoupper('Tendances') ?></a></li>
-                <li><a href=""><?php echo strtoupper('produits') ?></a></li>
-                <li><a href=""><?php echo strtoupper('les createurs') ?></a></li>
+                <li><a href="page-tendances.php"><?php echo strtoupper('Tendances') ?></a></li>
+                <li><a href="page-categories.php"><?php echo strtoupper('produits') ?></a></li>
+                <li><a href="page-createurs.php"><?php echo strtoupper('les createurs') ?></a></li>
             </ul>
         </nav>
 

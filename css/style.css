@@ -1241,18 +1241,6 @@ p.containerRadio {
     color: #FFFFFF;
 }
 
-/* .radioM:not(:checked)+.label-M:after {
-    opacity: 0;
-}
-
-
-.radioM:checked+.label-M:after {
-    opacity: 1;
-    background-color: #ee6e6b;
-    width: 45px;
-    height: 46px;
-    text-align: center;
-} */
 /**************************************************************************/
 /*                          Custom checkbox taille L                      */
 /**************************************************************************/
@@ -1305,16 +1293,37 @@ p.containerRadio {
     color: #FFFFFF;
 }
 
-/*
-.radioL:not(:checked)+.label-L:after {
-    opacity: 0;
+/**************************************************************************/
+/*                         Page catégorie                                 */
+/**************************************************************************/
+.containerProduit {
+    display: flex;
 }
 
+.sideBar {
+    width: 30%;
+    padding: 10px;
+    margin-left: 50px;
+}
 
-.radioL:checked+.label-L:after {
-    opacity: 1;
-    background-color: #ee6e6b;
-    width: 45px;
-    height: 46px;
-    text-align: center;
-} */
+.titrePageProduit {
+    font-size: 3rem;
+    font-style: italic;
+    font-weight: 700;
+    color: #ee6e6b;
+}
+
+.filtreProduit {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.filtreProduit button {
+    font-size: 2rem;
+    font-weight: lighter;
+    margin-top: 25px;
+    border: none;
+    background-color: transparent;
+}

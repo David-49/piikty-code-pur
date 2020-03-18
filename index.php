@@ -24,7 +24,7 @@
     </div>
 
     <div class="blocImagecadre"><img src="img/produit.jpg" alt=""><div class="calqueNoir"></div>
-    <a href="page-categorie.php" class="titreImage">Produits</a>
+    <a href="page-categories.php" class="titreImage">Produits</a>
     </div>
 
     <div class="blocImagecadre"><img src="img/createurs.jpeg" alt=""><div class="calqueNoir"></div>
