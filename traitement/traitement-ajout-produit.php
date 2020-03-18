@@ -1,17 +1,9 @@
 <?php
 
-
-function valid_donnees($donnees)
-{
-    $donnees = trim($donnees);
-    $donnees = stripslashes($donnees);
-    $donnees = htmlspecialchars($donnees);
-    return $donnees;
-}
+$enregistrer = "";
+$erreurProduit = "";
 
 if (isset($_SESSION['loginsession'])) {
-    $enregistrer = "";
-    $erreurProduit = "";
     $login = $_SESSION['loginsession'];
 
 
@@ -137,6 +129,7 @@ if (isset($_SESSION['loginsession'])) {
             $erreurProduit = "<p class='erreurEdit'>Le nom dépasse la limite des 255 caractères.</p>";
         }
     }
-} else {
-    header('Locatio: index.php');
 }
+
+//modifier structure
+//utilisation de cookies ?

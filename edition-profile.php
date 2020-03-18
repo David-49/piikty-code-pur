@@ -1,4 +1,9 @@
 <?php include('header.php') ?>
+<?php
+if (!isset($_SESSION['loginsession'])) {
+    header('Location: index.php');
+}
+?>
 <?php include('traitement/traitement-edit.php') ?>
 <?php include('traitement/edit-password.php') ?>
 

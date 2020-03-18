@@ -1,4 +1,9 @@
 <?php include('header.php') ?>
+<?php
+if (!isset($_SESSION['loginsession'])) {
+    header('Location: index.php');
+}
+?>
 <?php include('traitement/traitement-ajout-produit.php') ?>
 
 <?php
@@ -40,6 +45,8 @@
 // }
 
 ?>
+
+
 
 <h1 class="titreAjoutProduit"><?php echo strtoupper('partager') ?></h1>
 <div class="containerAjoutProduit">

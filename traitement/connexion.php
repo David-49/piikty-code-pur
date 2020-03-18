@@ -2,14 +2,6 @@
 $erreurCo = "";
 
 if (isset($_POST['buttonCo']) && !empty($_POST['mailConnect']) && !empty($_POST['mdpConnect'])) {
-    function valid_donnees($donnees)
-    {
-        $donnees = trim($donnees);
-        $donnees = stripslashes($donnees);
-        $donnees = htmlspecialchars($donnees);
-        return $donnees;
-    }
-
     $mail =  valid_donnees($_POST['mailConnect']);
     $mdp = $_POST['mdpConnect'];
 

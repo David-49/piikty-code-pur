@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php include('BDD/PDO/connection_bdd.php'); ?>
+<?php include('traitement/data-cleaning.php'); ?>
 <?php include('traitement/connexion.php'); ?>
 <?php include('traitement/inscription.php'); ?>
 

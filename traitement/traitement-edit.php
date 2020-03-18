@@ -1,16 +1,8 @@
 <?php
-function valid_donnees($donnees)
-{
-    $donnees = trim($donnees);
-    $donnees = stripslashes($donnees);
-    $donnees = htmlspecialchars($donnees);
-    return $donnees;
-}
-// $_SESSION['loginsession'] = $_POST['mailEdit'];
-// var_dump($_SESSION['loginsession']);
+
+$maj = "";
+$erreurEdit = "";
 if (isset($_SESSION['loginsession'])) {
-    $maj = "";
-    $erreurEdit = "";
     $login = $_SESSION['loginsession'];
 
 
@@ -247,6 +239,4 @@ if (isset($_SESSION['loginsession'])) {
             }
         }
     }
-} else {
-    header('Location: index.php');
 }
