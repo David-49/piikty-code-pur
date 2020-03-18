@@ -63,8 +63,8 @@ if (isset($_SESSION['erreurProduit'])) {
                 <option value="manteaux_blousons">Manteaux/Blousons</option>
                 <option value="pull">Pull</option>
                 <option value="chemises">Chemises</option>
-                <option value="pulls">T-shirts</option>
-                <option value="t_shirts">Pantalons</option>
+                <option value="t_shirts">T-shirts</option>
+                <option value="pantalon">Pantalons</option>
                 <option value="accessoires">Accessoires</option>
             </select>
         </div>

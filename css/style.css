@@ -28,18 +28,67 @@ a {
     text-decoration: none;
 }
 
-/* Quatro Bold font-family: quatro, sans-serif;
-font-weight: 700;
+/* Quatro UltraBlack
+
+font-family: quatro, sans-serif;
+
+font-weight: 900;
+
 font-style: normal;
-Quatro Bold Italic font-family: quatro, sans-serif;
-font-weight: 700;
+
+
+Quatro UltraBlack Italic
+
+font-family: quatro, sans-serif;
+
+font-weight: 900;
+
 font-style: italic;
-Quatro Regular font-family: quatro, sans-serif;
-font-weight: 400;
+
+
+Quatro Bold
+
+font-family: quatro, sans-serif;
+
+font-weight: 700;
+
 font-style: normal;
-Quatro Regular Italic font-family: quatro, sans-serif;
+
+
+Quatro Bold Italic
+
+font-family: quatro, sans-serif;
+
+font-weight: 700;
+
+font-style: italic;
+
+
+Quatro Regular
+
+font-family: quatro, sans-serif;
+
 font-weight: 400;
-font-style: italic; */
+
+font-style: normal;
+
+
+Quatro Regular Italic
+
+font-family: quatro, sans-serif;
+
+font-weight: 400;
+
+font-style: italic;
+
+
+Quatro Light
+
+font-family: quatro, sans-serif;
+
+font-weight: 200;
+
+font-style: normal; */
 body {
     height: 100%;
     position: relative;
@@ -1300,16 +1349,16 @@ p.containerRadio {
     display: flex;
 }
 
-.sideBar {
+.sideBarProduit {
     width: 30%;
     padding: 10px;
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 .titrePageProduit {
     font-size: 3rem;
     font-style: italic;
-    font-weight: 700;
+    font-weight: 900;
     color: #ee6e6b;
 }
 
@@ -1322,8 +1371,60 @@ p.containerRadio {
 
 .filtreProduit button {
     font-size: 2rem;
-    font-weight: lighter;
+    font-weight: 200;
     margin-top: 25px;
     border: none;
     background-color: transparent;
+}
+
+.wrapProduit {
+    width: 60%;
+    /* display: flex;
+    flex-wrap: wrap; */
+    margin-top: 40px;
+}
+
+.blocProduit {
+    width: 277px;
+}
+
+.blocNomProduit {
+    font-size: 1.8rem;
+    font-weight: 200;
+    text-overflow: ellipsis;
+}
+
+.blocPhotoProduit:hover {
+    opacity: 0.8;
+}
+
+.photoProduitAffichage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.inFoProduit {
+    padding: 4px;
+}
+
+.infotarif {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+}
+
+.prixProduit {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.createursProduit {
+    text-decoration: underline;
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #4D4D4D;
 }
