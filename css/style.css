@@ -1392,6 +1392,8 @@ p.containerRadio {
 
 .blocProduit {
     margin: 0 60px 60px 60px;
+    width: 277px;
+    height: 506px;
 }
 
 .blocNomProduit {
@@ -1400,16 +1402,24 @@ p.containerRadio {
     text-overflow: ellipsis;
 }
 
-.blocPhotoProduit:hover {
-    opacity: 0.8;
+/* .blocPhotoProduit:hover {
+    opacity: 0.5;
+} */
+.blocPhotoProduitV2 {
+    width: 277px;
+    height: 414px;
 }
 
 .photoProduitAffichage {
-    /* height: 100%;
+    height: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: center; */
-    width: 277px;
+    object-position: center;
+    border: solid 1px #ee6e6b;
+}
+
+.photoProduitAffichage:hover {
+    opacity: 0.6;
 }
 
 .inFoProduit {

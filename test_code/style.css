@@ -36,3 +36,55 @@
     font-style: normal;
     font-weight: normal;
 } */
+.blocProduit {
+    margin: 0 60px 60px 60px;
+    width: 277px;
+    height: 506px;
+}
+
+.blocNomProduit {
+    font-size: 1.8rem;
+    font-weight: 200;
+    text-overflow: ellipsis;
+}
+
+.blocPhotoProduit {
+    border: solid;
+    /* width: 277px;
+    height: 414px; */
+}
+
+.blocPhotoProduit:hover {
+    opacity: 0.8;
+}
+
+.photoProduitAffichage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.inFoProduit {
+    padding: 4px;
+}
+
+.infotarif {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
+}
+
+.prixProduit {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.createursProduit {
+    text-decoration: underline;
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: #4D4D4D;
+}

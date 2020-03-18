@@ -2,14 +2,14 @@
 <?php include('header.php') ?>
 
 
-    <div class="banniereCreateurs">
-        <img src="img/banniere.jpg" class="image-banniere-createurs">
-        <div class="calque"></div>
+<div class="banniereCreateurs">
+    <img src="img/banniere.jpg" class="image-banniere-createurs">
+    <div class="calque"></div>
 
-        <h1  class="titrePageCreateurs">Produits</h1>
-    </div>
+    <h1  class="titrePageCreateurs">Produits</h1>
+</div>
 
-    <div class="produitCatégorie">
+<div class="produitCatégorie">
     <div class="blocPhotoCategorie">
 
 

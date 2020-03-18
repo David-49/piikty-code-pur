@@ -8,6 +8,12 @@ $id = $_SESSION['idsession'];
 
 if (!empty($_GET['cat'])) {
     $sexeProduit = htmlspecialchars($_GET['cat']);
+
+    if ($sexeProduit == 'homme') {
+        $sexeProduit = 'homme';
+    } elseif ($sexeProduit == 'femme') {
+        $sexeProduit = 'femme';
+    }
 }
 
 
@@ -84,6 +90,13 @@ $reqS -> execute();
 
 ?>
 
+<div class="banniereCreateurs">
+    <img src="img/banniere_homme.jpg" class="image-banniere-createurs">
+    <div class="calque"></div>
+
+    <h1  class="titrePageCreateurs">HOMME</h1>
+</div>
+
 <div class="containerProduit">
 
     <div class="sideBarProduit">
@@ -122,7 +135,9 @@ $reqS -> execute();
             echo
                 "<div class='blocProduit'>
                     <a href='profile-produit.php?idProduit=".$ligne -> id_produit."' class='blocPhotoProduit'>
-                        <img src='".$ligne -> chemin_photo_produit."' alt='photo dun produit' class='photoProduitAffichage'>
+                        <div class='blocPhotoProduitV2'>
+                            <img src='".$ligne -> chemin_photo_produit."' alt='photo dun produit' class='photoProduitAffichage'>
+                        </div>
                     </a>
                     <div class='inFoProduit'>
                         <div class='blocNomProduit'>
