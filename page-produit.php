@@ -3,8 +3,6 @@
 <?php include('traitement/data-cleaning.php'); ?>
 
 <?php
-$id = $_SESSION['idsession'];
-
 
 if (!empty($_GET['cat'])) {
     $sexeProduit = htmlspecialchars($_GET['cat']);
@@ -145,7 +143,7 @@ $reqS -> execute();
                         </div>
                         <div class='infotarif'>
                             <p class='prixProduit'>".$ligne -> prix_produit." €</p>
-                            <a href='page-profile.php?idCrea=".$ligne -> id_createurs."' class='createursProduit'>".$ligne -> prenom." ".$ligne -> nom."</a>
+                            <a href='page-profil.php?idCrea=".$ligne -> id_createurs."' class='createursProduit'>".$ligne -> prenom." ".$ligne -> nom."</a>
                         </div>
                     </div>
                 </div>";

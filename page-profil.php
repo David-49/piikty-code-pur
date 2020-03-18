@@ -1,16 +1,21 @@
 <?php session_start(); ?>
-<?php include('header.php') ?>
+<?php include('header.php'); ?>
 
 <?php
 
-$mailUser = $_SESSION['loginsession'];
+if (isset($_SESSION['loginsession'])) {
+    $id = $_SESSION['idsession'];
+} else {
+    if (!empty($_GET['idCrea'])) {
+        $id = htmlspecialchars($_GET['idCrea']);
+    }
+}
 
-$userReq = $connection -> prepare("SELECT * FROM piikti_users WHERE mail = '$mailUser'");
+$userReq = $connection -> prepare("SELECT * FROM piikti_users WHERE id = '$id'");
 
 $userReq -> execute();
 
 while ($ligne = $userReq -> fetch()) {
-    $id = $ligne -> id;
     $prenom = $ligne -> prenom;
     $nom = $ligne -> nom;
     $dateNaissance = $ligne -> dateNaissance;
@@ -75,7 +80,7 @@ $metaReq -> closeCursor();
 
             <p class='ageCreateursProfil'><?php echo $age; ?> ans</p>
             <p class="nbProduitCreateur">4 création(s) mises en ligne</p>
-            <a href="mailto: <?php echo $mail; ?>"class="emailCreateur"><?php echo $mail; ?></p>
+            <a href="mailto: <?php echo $mail; ?>"class="emailCreateur"><?php echo $mail; ?></a>
 
             <div class="logoRSProfil">
             <?php
@@ -106,7 +111,7 @@ $metaReq -> closeCursor();
         </div>
         <div class="blocBoutonUser">
             <?php
-            if (isset($_SESSION['loginsession'])) {
+            if (isset($_SESSION['idsession'])) {
                 ?>
                 <a href="ajout_produits.php" class="lienAjoutProduit"><i class="fas fa-plus-circle"></i><p>Ajouter un nouveau produit</p></a>
 
@@ -137,4 +142,4 @@ $metaReq -> closeCursor();
 
 
 
-<?php include('footer.php') ?>
+<?php include('footer.php'); ?>

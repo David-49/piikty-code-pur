@@ -9,7 +9,7 @@
     <h1  class="titrePageCreateurs">Produits</h1>
 </div>
 
-<div class="produitCatégorie">
+<div class="produitCategorie">
     <div class="blocPhotoCategorie">
 
 
