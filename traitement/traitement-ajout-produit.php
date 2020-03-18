@@ -48,7 +48,7 @@ if (isset($_SESSION['idsession'])) {
         $info = strtolower(strrchr($nomPhoto, "."));
 
         //on stock dans une variable la destination du fichier jusqu'au dossier serveur
-        $destination = "upload/photo_produits/$nomPhoto";
+        $destination = "../upload/photo_produits/$nomPhoto";
 
         if (strlen($nomProduit) < 256) {
             $reqS = $connection -> prepare("SELECT nom_produit FROM piikti_produit WHERE nom_produit = '$nomProduit'");
@@ -94,7 +94,7 @@ if (isset($_SESSION['idsession'])) {
                                 $lastId = $connection -> lastInsertId();
 
                                 //on renomme le fichier de sorte que chaque fichier ai un nom unique avec l'id
-                                rename("upload/photo_produits/$nomPhoto", "upload/photo_produits/Photo_".$lastId.$info);
+                                rename("../upload/photo_produits/$nomPhoto", "../upload/photo_produits/Photo_".$lastId.$info);
 
                                 //on met à jour la variable avec le nouveau nom
                                 $destination = "upload/photo_produits/Photo_".$lastId.$info;

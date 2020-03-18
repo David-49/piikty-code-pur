@@ -26,20 +26,20 @@ $(function(){
 
 
     //Personnalisation pour la page paramètre
-    function readURL(input) {
+    function readURL1(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            var reader1 = new FileReader();
 
-            reader.onload = function (e) {
+            reader1.onload = function (e) {
                 $('#img').attr('src', e.target.result);
             }
 
-            reader.readAsDataURL(input.files[0]);
+            reader1.readAsDataURL(input.files[0]);
         }
     }
 
     $("#imgInpt").change(function(){
-        readURL(this);
+        readURL1(this);
     });
 
     //Personnalisation pour la page ajout produit
@@ -66,15 +66,18 @@ $(function(){
         button     = document.querySelector( ".input-file-trigger" ),
         the_return = document.querySelector(".file-return");
 
-    button.addEventListener( "keydown", function( event ) {
-        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+    if (button) {
+        button.addEventListener( "keydown", function( event ) {
+            if ( event.keyCode == 13 || event.keyCode == 32 ) {
+                fileInput.focus();
+            }
+        });
+        button.addEventListener( "click", function( event ) {
             fileInput.focus();
-        }
-    });
-    button.addEventListener( "click", function( event ) {
-       fileInput.focus();
-       return false;
-    });
+            return false;
+        });
+    }
+
 
     //Personnalisation pour la page ajout produit
     document.querySelector("html").classList.add('js');
@@ -83,16 +86,17 @@ $(function(){
         button     = document.querySelector( ".labelProduitPhoto" ),
         the_return = document.querySelector(".file-return");
 
-    button.addEventListener( "keydown", function( event ) {
-        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+    if (button) {
+        button.addEventListener( "keydown", function( event ) {
+            if ( event.keyCode == 13 || event.keyCode == 32 ) {
+                fileInput.focus();
+            }
+        });
+        button.addEventListener( "click", function( event ) {
             fileInput.focus();
-        }
-    });
-    button.addEventListener( "click", function( event ) {
-       fileInput.focus();
-       return false;
-    });
-
+            return false;
+        });
+    }
 
  });
 

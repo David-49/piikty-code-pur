@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php
+
 if (!isset($_SESSION['loginsession'])) {
     header('Location: index.php');
     exit;
@@ -80,7 +81,7 @@ $reqS -> closeCursor();
 
             <div class="input-file-container">
                 <label for="photo" tabindex="0" class="input-file-trigger">modifier</label>
-                <input type="file" name="photo" accept="image/jpeg" runat="server" id="imgInpt" class="input-file">
+                <input type="file" name="photo" accept="image/jpeg"  id="imgInpt" class="input-file" runat="server">
             </div>
         </div>
 

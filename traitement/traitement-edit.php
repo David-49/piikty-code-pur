@@ -34,7 +34,7 @@ if (isset($_SESSION['idsession'])) {
             $info = strtolower(strrchr($nomPhoto, "."));
 
             //on stock dans une variable la destination du fichier jusqu'au dossier serveur
-            $destination = "upload/photo_profile/$nomPhoto";
+            $destination = "../upload/photo_profile/$nomPhoto";
 
 
             if ($info == ".jpg" || $info == ".jpeg" && $taille <= 2000000) {
@@ -49,7 +49,7 @@ if (isset($_SESSION['idsession'])) {
                 $reqUp -> closeCursor();
 
                 //on renomme le fichier de sorte que chaque fichier ai un nom unique avec l'id
-                rename("upload/photo_profile/$nomPhoto", "upload/photo_profile/Photo_".$id.$info);
+                rename("../upload/photo_profile/$nomPhoto", "../upload/photo_profile/Photo_".$id.$info);
 
                 //on met à jour la variable avec le nouveau nom
                 $destination = "upload/photo_profile/Photo_".$id.$info;
@@ -233,6 +233,10 @@ if (isset($_SESSION['idsession'])) {
                 $_SESSION['erreurEdit'] .= "<p class='erreurEdit'>Ce n'est pas une URL.</p>";
             }
         }
-        header('Location: ../edition-profile.php');
+        if ($ok) {
+            header('Location: ../edition-profile.php');
+        } else {
+            header('Location: ../edition-profile.php');
+        }
     }
 }
