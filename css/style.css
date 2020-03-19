@@ -103,7 +103,7 @@ body {
 }
 
 .logoPiikti {
-    height: 90px !important;
+    height: 150px !important;
 }
 
 .nav {
@@ -605,7 +605,7 @@ body {
     margin: auto;
     width: 80%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     /* justify-content: space-around; */
     flex-wrap: wrap;
     padding: 20px;
@@ -614,6 +614,7 @@ body {
 .cadrePhotoCreateur {
     height: 526px;
     width: 380px;
+    margin: auto;
     position: relative;
     margin: 25px;
 }
@@ -773,6 +774,21 @@ body {
     margin-top: 100px;
 }
 
+.wrapProduitProfil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.blocProduitProfile {
+    margin: 0 50px 60px 50px;
+    width: 277px;
+    height: 506px;
+}
+
 .titreProduit {
     font-size: 3.5rem;
     font-style: italic;
@@ -783,6 +799,10 @@ body {
     margin: auto;
     border-bottom: solid #ee6e6b;
     margin-bottom: 20px;
+}
+
+.espaceCommentaire {
+    margin-top: 80px;
 }
 
 .titreEspaceCom {
@@ -1409,9 +1429,6 @@ p.containerRadio {
     text-overflow: ellipsis;
 }
 
-/* .blocPhotoProduit:hover {
-    opacity: 0.5;
-} */
 .blocPhotoProduitV2 {
     width: 277px;
     height: 414px;
@@ -1451,4 +1468,115 @@ p.containerRadio {
     font-size: 1.8rem;
     font-weight: 200;
     color: #4D4D4D;
+}
+
+/*********************************************************************************/
+/*                         Page mentions legales                                 */
+/*********************************************************************************/
+.blocTitreMention {
+    border-bottom: solid #ee6e6b;
+    width: 40%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.titreMentions {
+    font-size: 3.5rem;
+    font-style: italic;
+    font-weight: 900;
+    text-align: center;
+    color: #ee6e6b;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+}
+
+.containerMentions {
+    padding: 60px 180px 60px 180px;
+}
+
+.blocMentionLegale h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 25px 0 25px 30px;
+    color: #ee6e6b;
+}
+
+.blocMentionLegale p, ul li {
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+/*********************************************************************************/
+/*                         Page a propos de nous                                 */
+/*********************************************************************************/
+.blocTitreNous {
+    border-bottom: solid #ee6e6b;
+    width: 40%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.titrePageNous {
+    font-size: 3.5rem;
+    font-style: italic;
+    font-weight: 900;
+    text-align: center;
+    color: #ee6e6b;
+    padding: 0;
+    margin: 0;
+}
+
+.containerNous {
+    margin: 100px 0 100px 0;
+}
+
+.presentationsNous {
+    width: 60%;
+    margin: auto;
+}
+
+.presentationsNous p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.presentationsNous p, span {
+    font-size: 2.3rem;
+}
+
+.presentationsNous span {
+    color: #ee6e6b;
+}
+
+.blocPhotoNous {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+}
+
+.cadrePhotoNous {
+    margin: 25px;
+}
+
+.testest {
+    height: 364px;
+    width: 244px;
+    margin-bottom: 10px;
+}
+
+.cadrePhotoNous p {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.nomFamille {
+    text-transform: uppercase;
+}
+
+.cadrePhotoNous img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }

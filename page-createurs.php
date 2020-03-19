@@ -1,61 +1,64 @@
 <?php session_start(); ?>
+<?php include('header.php'); ?>
+
+<div class="banniereCreateurs">
+    <img src="img/banniere_createurs.jpg" class="image-banniere-createurs">
+    <div class="calque"></div>
+
+    <h1  class="titrePageCreateurs">LES CREATEURS</h1>
+</div>
+
+
+
+<?php include('template/searchForm.php'); ?>
+
 <?php
-/*
-    Template Name: Créateurs
-*/
-?>
-<?php get_header(); ?>
-
-<?php get_template_part('banniere'); ?>
-
-<?php get_template_part('searchForm'); ?>
-
-<?php
-// Create the WP_User_Query object
-$wp_user_query = new WP_User_Query(array(
-    'role' => 'Créateurs',
-    'order' => 'ASC',
-    'orderby' => 'display_name'
-));
-
-// Get the results
-$createurs = $wp_user_query->get_results();
-
-// Looping createurs
-if (!empty($createurs)) {
-    echo "<div class='blocCreateurs'>";
-    foreach ($createurs as $createur) {
-        // get all the user's data
-        $user_info = get_userdata($createur->ID);
-        // var_dump($user_info);
-        // echo "<p>".$user_info->ID."</p>";
-        $userPhoto = $createur->ID;
-        // var_dump($userPhoto);
-        //printing basic infos
-        // echo "<a href='".bloginfo('url')."/profil/?user_id=".$userPhoto."' class='cadrePhotoCreateur'>";?>
-        <a href='<?php echo get_permalink(84)."?user_id=".$userPhoto; ?>' class='cadrePhotoCreateur'>
-        <?php
-        mt_profile_img(
-            $userPhoto,
-            array(
-                'size' => 'large',
-                'attr' => array( 'alt' => 'photo de profil des créateurs', 'class' => 'photoCreateurs' ),
-                'echo' => true,
-            )
-        );
-        echo "<div class='calqueCadreCreateurs'></div>";
-        echo "<div class='blocinfoCreateurs'>
-        <p class='nomCreateurs'>".$user_info->first_name." ".strtoupper($user_info->last_name)."</p>
-        <p class='ageCreateurs'>".$user_info->age."</p>
-        </div>";
-        echo "</a>";
+function age($date)
+{
+    $age = date('Y') - date('Y', strtotime($date));
+    if (date('md') < date('md', strtotime($date))) {
+        return $age - 1;
     }
-    echo "</div>";
+    return $age;
 }
 
 
 
+$sql = "SELECT DISTINCT
+piikti_users.id AS id_createurs, nom, prenom, chemin_photo_profile, dateNaissance
+FROM piikti_users
+INNER JOIN piikti_users_meta
+    ON piikti_users_meta.id_utilisateur = piikti_users.id
+INNER JOIN piikti_produit
+    ON piikti_produit.id_utilisateur = piikti_users_meta.id_utilisateur
+ORDER BY id_createurs DESC";
 
- ?>
+$reqCreateurs = $connection -> prepare($sql);
 
-<?php get_footer(); ?>
+$reqCreateurs -> execute();
+
+
+
+?>
+<div class='blocCreateurs'>
+
+        <?php
+        while ($ligne = $reqCreateurs -> fetch()) {
+            $lien = (empty($ligne -> chemin_photo_profile)) ? 'img/profil_defaut.jpg' : $ligne -> chemin_photo_profile;
+            echo "    <a href='page-profil.php?idCrea=".$ligne -> id_createurs."' class='cadrePhotoCreateur'>
+            <img src='".$lien."' alt='photo de profil des créateurs' class='photoCreateurs'>
+
+            <div class='calqueCadreCreateurs'></div>
+            <div class='blocinfoCreateurs'>
+            <p class='nomCreateurs'>".$ligne -> prenom." ".strtoupper($ligne -> nom)."</p>
+            <p class='ageCreateurs'>".$age = age($ligne -> dateNaissance)." ans</p>
+            </div>
+            </a>";
+        }
+        ?>
+
+
+
+
+</div>
+<?php include('footer.php') ?>

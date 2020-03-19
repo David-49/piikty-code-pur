@@ -6,7 +6,7 @@
     <img src="img/banniere.jpg" class="image-banniere-createurs">
     <div class="calque"></div>
 
-    <h1  class="titrePageCreateurs">Produits</h1>
+    <h1  class="titrePageCreateurs">PRODUITS</h1>
 </div>
 
 <div class="produitCategorie">

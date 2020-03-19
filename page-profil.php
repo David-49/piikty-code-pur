@@ -3,7 +3,7 @@
 
 <?php
 
-if (isset($_SESSION['loginsession'])) {
+if (isset($_SESSION['idsession'])) {
     $id = $_SESSION['idsession'];
 } else {
     if (!empty($_GET['idCrea'])) {
@@ -11,7 +11,13 @@ if (isset($_SESSION['loginsession'])) {
     }
 }
 
-$userReq = $connection -> prepare("SELECT * FROM piikti_users INNER JOIN piikti_users_meta WHERE piikti_users.id = piikti_users_meta.id_utilisateur  AND piikti_users.id = '$id'");
+$sql = "SELECT *
+FROM piikti_users
+INNER JOIN piikti_users_meta
+WHERE piikti_users.id = piikti_users_meta.id_utilisateur
+AND piikti_users.id = '$id'";
+
+$userReq = $connection -> prepare($sql);
 
 $userReq -> execute();
 
@@ -65,27 +71,11 @@ while ($ligne = $nbProd -> fetch()) {
     $nbLigne = $ligne -> nbLigne;
 }
 
-// $metaReq = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
-//
-// $metaReq -> execute();
-//
-// if ($metaReq -> rowCount() == 1) {
-//     while ($ligne = $metaReq -> fetch()) {
-//         $desc = $ligne -> description;
-//         $pathPhoto = $ligne -> chemin_photo_profile;
-//         $fbLien = $ligne -> facebook_lien;
-//         $instaLien = $ligne -> instagram_lien;
-//         $pintLien = $ligne -> pinterest_lien;
-//     }
-// } else {
-//     $desc  = "";
-//     $pathPhoto = "";
-//     $fbLien = "";
-//     $instaLien = "";
-//     $pintLien = "";
-// }
-//
-// $metaReq -> closeCursor();
+
+$sqlProduit = $connection -> prepare("SELECT piikti_produit.id AS id_produit, nom_produit, nom, prenom, prix_produit, chemin_photo_produit FROM piikti_produit INNER JOIN piikti_users WHERE piikti_users.id = piikti_produit.id_utilisateur AND id_utilisateur = '$id' ORDER BY piikti_produit.id DESC");
+
+$sqlProduit -> execute();
+
 
 
 ?>
@@ -98,7 +88,7 @@ while ($ligne = $nbProd -> fetch()) {
         if ($pathPhoto != "" || $pathPhoto != null) {
             echo $pathPhoto;
         } else {
-            echo "logo/user-solid.svg";
+            echo "img/profil_defaut.jpg";
         }
      ?>" alt="image profil temporaire de l'utilisateur" class="photoCreateursProfil">
 
@@ -162,6 +152,29 @@ while ($ligne = $nbProd -> fetch()) {
 
 <div class="mesProduits">
     <h2 class="titreProduit">Mes Produits</h2>
+    <div class="wrapProduitProfil">
+        <?php
+        while ($ligne = $sqlProduit -> fetch()) {
+            echo
+            "<div class='blocProduitProfile'>
+                <a href='profile-produit.php?idProduit=".$ligne -> id_produit."' class='blocPhotoProduit'>
+                    <div class='blocPhotoProduitV2'>
+                        <img src='".$ligne -> chemin_photo_produit."' alt='photo dun produit' class='photoProduitAffichage'>
+                    </div>
+                </a>
+                <div class='inFoProduit'>
+                    <div class='blocNomProduit'>
+                        <p>".$ligne -> nom_produit."</p>
+                    </div>
+                    <div class='infotarif'>
+                        <p class='prixProduit'>".$ligne -> prix_produit." €</p>
+                        <p class='createursProduit'>".$ligne -> prenom." ".$ligne -> nom."</p>
+                    </div>
+                </div>
+            </div>";
+        }
+        ?>
+    </div>
 </div>
 
 <div class="espaceCommentaire">

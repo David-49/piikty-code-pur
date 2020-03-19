@@ -15,7 +15,7 @@ if (!empty($_GET['cat'])) {
 }
 
 
-$sql = "SELECT piikti_produit.id AS id_produit, piikti_users.id AS id_createurs, id_utilisateur, nom, prenom, nom_produit, prix_produit, chemin_photo_produit FROM piikti_users INNER JOIN piikti_produit WHERE piikti_users.id = piikti_produit.id_utilisateur AND sexe_produit = '$sexeProduit'";
+$sql = "SELECT piikti_produit.id AS id_produit, piikti_users.id AS id_createurs, nom, prenom, nom_produit, prix_produit, chemin_photo_produit FROM piikti_users INNER JOIN piikti_produit WHERE piikti_users.id = piikti_produit.id_utilisateur AND sexe_produit = '$sexeProduit'";
 $check = "";
 
 $btnALL = true;
@@ -78,7 +78,7 @@ if (!empty($_POST['btnAcc'])) {
     $btnALL = false;
 }
 if ($check == true) {
-    $sql  = "SELECT piikti_produit.id AS id_produit, piikti_users.id AS id_createurs, id_utilisateur, nom, prenom, nom_produit, prix_produit, chemin_photo_produit FROM piikti_users INNER JOIN piikti_produit WHERE piikti_users.id = piikti_produit.id_utilisateur AND sexe_produit = '$sexeProduit'";
+    $sql  = "SELECT piikti_produit.id AS id_produit, piikti_users.id AS id_createurs, nom, prenom, nom_produit, prix_produit, chemin_photo_produit FROM piikti_users INNER JOIN piikti_produit WHERE piikti_users.id = piikti_produit.id_utilisateur AND sexe_produit = '$sexeProduit'";
 }
 
 $sql .= " ORDER BY piikti_produit.id DESC";

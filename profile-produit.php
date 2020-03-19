@@ -2,8 +2,14 @@
 <?php include('header.php') ?>
 
 <?php
-$id = $_SESSION['idsession'];
 
+if (isset($_SESSION['idsession'])) {
+    $id = $_SESSION['idsession'];
+}
+
+if (!empty($_GET['idProduit'])) {
+    $idProduit = htmlspecialchars($_GET['idProduit']);
+}
 
 $reqS = $connection -> prepare("SELECT * FROM piikti_produit WHERE id_utilisateur = '$id'");
 $reqS -> execute();

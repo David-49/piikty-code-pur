@@ -31,9 +31,9 @@
 
     <div class="menu-footer">
         <ul class="site__footer__menu">
-            <li><a href="mentions_legales.html"><?php echo strtoupper('mentions légales') ?></a></li>
+            <li><a href="mentions_legales.php"><?php echo strtoupper('mentions legales') ?></a></li>
             <li><a href="partenaires.php"><?php echo strtoupper('Nos partenaires') ?></a></li>
-            <li><a href="nous.html"><?php echo strtoupper('a propos de nous') ?></a></li>
+            <li><a href="nous.php"><?php echo strtoupper('a propos de nous') ?></a></li>
         </ul>
     </div>
 
