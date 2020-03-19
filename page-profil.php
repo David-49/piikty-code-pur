@@ -11,7 +11,7 @@ if (isset($_SESSION['loginsession'])) {
     }
 }
 
-$userReq = $connection -> prepare("SELECT * FROM piikti_users WHERE id = '$id'");
+$userReq = $connection -> prepare("SELECT * FROM piikti_users INNER JOIN piikti_users_meta WHERE piikti_users.id = piikti_users_meta.id_utilisateur  AND piikti_users.id = '$id'");
 
 $userReq -> execute();
 
@@ -20,9 +20,32 @@ while ($ligne = $userReq -> fetch()) {
     $nom = $ligne -> nom;
     $dateNaissance = $ligne -> dateNaissance;
     $mail = $ligne -> mail;
+    $desc = $ligne -> description;
+    $pathPhoto = $ligne -> chemin_photo_profile;
+    $fbLien = $ligne -> facebook_lien;
+    $instaLien = $ligne -> instagram_lien;
+    $pintLien = $ligne -> pinterest_lien;
 }
 
 $userReq -> closeCursor();
+
+if ($desc == null) {
+    $desc  = "";
+}
+if ($pathPhoto == null) {
+    $pathPhoto  = "";
+}
+if ($fbLien == null) {
+    $fbLien = "";
+}
+if ($instaLien == null) {
+    $instaLien = "";
+}
+if ($pintLien == null) {
+    $pintLien = "";
+}
+
+
 
 function age($date)
 {
@@ -35,27 +58,34 @@ function age($date)
 
 $age = age($dateNaissance);
 
-$metaReq = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
+$nbProd = $connection -> prepare("SELECT COUNT(*) AS nbLigne FROM piikti_produit WHERE id_utilisateur = '$id'");
+$nbProd -> execute();
 
-$metaReq -> execute();
-
-if ($metaReq -> rowCount() == 1) {
-    while ($ligne = $metaReq -> fetch()) {
-        $desc = $ligne -> description;
-        $pathPhoto = $ligne -> chemin_photo_profile;
-        $fbLien = $ligne -> facebook_lien;
-        $instaLien = $ligne -> instagram_lien;
-        $pintLien = $ligne -> pinterest_lien;
-    }
-} else {
-    $desc  = "";
-    $pathPhoto = "";
-    $fbLien = "";
-    $instaLien = "";
-    $pintLien = "";
+while ($ligne = $nbProd -> fetch()) {
+    $nbLigne = $ligne -> nbLigne;
 }
 
-$metaReq -> closeCursor();
+// $metaReq = $connection -> prepare("SELECT * FROM piikti_users_meta WHERE id_utilisateur = '$id'");
+//
+// $metaReq -> execute();
+//
+// if ($metaReq -> rowCount() == 1) {
+//     while ($ligne = $metaReq -> fetch()) {
+//         $desc = $ligne -> description;
+//         $pathPhoto = $ligne -> chemin_photo_profile;
+//         $fbLien = $ligne -> facebook_lien;
+//         $instaLien = $ligne -> instagram_lien;
+//         $pintLien = $ligne -> pinterest_lien;
+//     }
+// } else {
+//     $desc  = "";
+//     $pathPhoto = "";
+//     $fbLien = "";
+//     $instaLien = "";
+//     $pintLien = "";
+// }
+//
+// $metaReq -> closeCursor();
 
 
 ?>
@@ -79,7 +109,7 @@ $metaReq -> closeCursor();
             <p class='nomCreateursProfil'><?php echo $prenom." ".strtoupper($nom); ?></p>
 
             <p class='ageCreateursProfil'><?php echo $age; ?> ans</p>
-            <p class="nbProduitCreateur">4 création(s) mises en ligne</p>
+            <p class="nbProduitCreateur"><?php echo $nbLigne; ?> création(s) mises en ligne</p>
             <a href="mailto: <?php echo $mail; ?>"class="emailCreateur"><?php echo $mail; ?></a>
 
             <div class="logoRSProfil">

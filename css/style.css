@@ -415,7 +415,7 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: 66%;
 }
 
 .calqueNoir {
@@ -1347,6 +1347,13 @@ p.containerRadio {
 /**************************************************************************/
 .containerProduit {
     display: flex;
+}
+
+.image-banniere-produit {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0 10%;
 }
 
 .sideBarProduit {

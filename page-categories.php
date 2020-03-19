@@ -14,13 +14,15 @@
 
 
 
-        <a href="page-produit.php?cat=homme" class="blocImagecadre"><img src="img/categorie_homme.jpg" alt="photo désignant la catégorie homme">
+        <a href="page-produit.php?cat=homme" class="blocImagecadre">
+            <img src="img/categorie_homme.jpg" alt="photo désignant la catégorie homme">
             <p class="titreImage">HOMME</p>
             <div class="calqueNoir"></div>
 
         </a>
 
-        <a href="page-produit.php?cat=femme" class="blocImagecadre"><img src="img/categorie_femme.jpg" alt="photo désignant la catégorie femme">
+        <a href="page-produit.php?cat=femme" class="blocImagecadre">
+            <img src="img/categorie_femme.jpg" alt="photo désignant la catégorie femme">
             <p class="titreImage">FEMME</p>
             <div class="calqueNoir"></div>
 

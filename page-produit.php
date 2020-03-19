@@ -88,12 +88,26 @@ $reqS -> execute();
 
 ?>
 
-<div class="banniereCreateurs">
-    <img src="img/banniere_homme.jpg" class="image-banniere-createurs">
-    <div class="calque"></div>
+<?php if ($sexeProduit == 'homme') {
+    ?>
+    <div class="banniereCreateurs">
+        <img src="img/categorie_homme.jpg" class="image-banniere-produit">
+        <div class="calque"></div>
 
-    <h1  class="titrePageCreateurs">HOMME</h1>
-</div>
+        <h1  class="titrePageCreateurs"><?php echo strtoupper($sexeProduit); ?></h1>
+    </div>
+<?php
+} else {
+        ?>
+    <div class="banniereCreateurs">
+        <img src="img/categorie_femme.jpg" class="image-banniere-produit">
+        <div class="calque"></div>
+
+        <h1  class="titrePageCreateurs"><?php echo strtoupper($sexeProduit); ?></h1>
+    </div>
+    <?php
+    }
+?>
 
 <div class="containerProduit">
 
