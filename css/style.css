@@ -82,11 +82,11 @@ font-weight: 400;
 font-style: italic;
 
 
-Quatro Light
+Quatro Black
 
 font-family: quatro, sans-serif;
 
-font-weight: 200;
+font-weight: 800;
 
 font-style: normal; */
 body {
@@ -1258,6 +1258,17 @@ p.containerRadio {
     text-align: center;
 }
 
+/* Disabled checked */
+.radioTaille:disabled:checked+.labelRadio:after {
+    color: #777;
+    cursor: default;
+}
+
+.radioTaille:disabled+.labelRadio {
+    color: #aaa;
+    cursor: default;
+}
+
 /**************************************************************************/
 /*                          Custom checkbox taille M                      */
 /**************************************************************************/
@@ -1579,4 +1590,227 @@ p.containerRadio {
     width: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/*********************************************************************************/
+/*                         Page a propos de nous                                 */
+/*********************************************************************************/
+.blocRougeProduit {
+    width: 100%;
+    height: 326px;
+    position: relative;
+    background-color: #ee6e6b;
+}
+
+.cadrePhotoProduit {
+    position: absolute;
+    z-index: 9999;
+    left: 30px;
+    top: 30px;
+    height: 621px;
+    width: 448px;
+}
+
+.cadrePhotoProduit img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border: solid #ee6e6b 1px;
+}
+
+.blocinfoCreateursProduits {
+    margin-left: 40%;
+    padding-top: 50px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+}
+
+.photoCreateursProduit {
+    height: 246px;
+    width: 246px;
+}
+
+.photoCreateursProduit img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100%;
+}
+
+.blocinfoCreateursProduits p {
+    margin-top: 25px;
+}
+
+.infoCreateurs {
+    text-align: left;
+    margin-left: 40px;
+}
+
+.nomCreateursProduit {
+    font-size: 3rem;
+}
+
+.nomCreateursProduit a {
+    color: white;
+}
+
+.nom-produit {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.prix-produit {
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+.info-sup-produit {
+    margin-left: 30%;
+    display: flex;
+    width: 65%;
+}
+
+.descProduitProfil {
+    font-size: 2rem;
+    width: 45%;
+    padding: 60px;
+    height: 300px;
+    overflow: scroll;
+    line-height: 1.6;
+}
+
+.detailsProduit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 284.5px;
+    margin-left: 50px;
+    padding: 10px;
+}
+
+.formProduit {
+    width: 100%;
+}
+
+.taille-produit {
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+}
+
+.bouton-Panier {
+    background-color: #ee6e6b;
+    padding: 10px;
+    font-size: 2.3rem;
+    color: white;
+    border: none;
+    margin-top: 80px;
+}
+
+.guide-Taille {
+    font-size: 2rem;
+    padding: 5px;
+    margin-top: 50px;
+    border: none;
+    border-bottom: solid 1px #ee6e6b;
+}
+
+.bouton-Panier, .guide-Taille, .blocRadioProduit {
+    width: 100%;
+}
+
+.produit-sup {
+    margin-top: 260px;
+}
+
+.titre-profil-produit {
+    font-size: 4.4rem;
+    font-weight: 200rem;
+    text-align: center;
+    margin: 50px 0 50px 0;
+}
+
+.choix-produit {
+    width: 100%;
+    display: flex;
+}
+
+/*********************************************************************************/
+/*                        Personnalisation input radio                           */
+/*********************************************************************************/
+.blocRadioProduit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blocRadioProduit input.radioP {
+    display: none;
+}
+
+.containerRadioProduit {
+    margin: 20px;
+}
+
+.containerRadioProduit label.labelP {
+    position: relative;
+}
+
+/* Base styles for spans */
+.containerRadioProduit span::before,
+.containerRadioProduit span::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+/* Radio buttons */
+.containerRadioProduit span.radio:hover {
+    cursor: pointer;
+}
+
+.containerRadioProduit span.radio::before {
+    left: -52px;
+    width: 45px;
+    height: 45px;
+    background-color: white;
+}
+
+.containerRadioProduit span.radio::after {
+    left: -52px;
+    text-align: center;
+    line-height: 2.2;
+    width: 45px;
+    height: 45px;
+    color: #ee6e6b;
+    transition: left .25s, background-color .25s;
+    border: solid 1px #ee6e6b;
+}
+
+.alternativeTailleS span.radio::after {
+    content: "S";
+}
+
+.alternativeTailleM span.radio::after {
+    content: "M";
+}
+
+.alternativeTailleL span.radio::after {
+    content: "L";
+}
+
+input.radioP:checked+label.labelP span.radio::after {
+    left: -52px;
+    background-color: #ee6e6b;
+    color: white;
+}
+
+input.radioP:disabled+label.labelP span.radio::after {
+    left: -52px;
+    border: solid 1px #B0B0B0;
+    color: #B0B0B0;
+    cursor: default;
 }
