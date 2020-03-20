@@ -53,6 +53,7 @@ if (isset($_POST['buttonCo']) and !empty($_POST['prenom']) and !empty($_POST['no
 
                             if ($ok) {
                                 $_SESSION['loginsession'] = $_POST['mailInscription'];
+                                // var_dump($lastId);
                                 $_SESSION['idsession'] = $lastId;
                                 header('Location: ../edition-profile.php');
                             }

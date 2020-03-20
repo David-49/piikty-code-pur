@@ -16,7 +16,7 @@
  if (isset($_SESSION['idsession'])) {
      $id = $_SESSION['idsession'];
 
-     $reqS = $connection -> prepare("SELECT prenom, nom, chemin_photo_profile FROM piikti_users p INNER JOIN piikti_users_meta pM ON pM.id_utilisateur = p.id WHERE p.id = '$id'");
+     $reqS = $connection -> prepare("SELECT prenom, nom, chemin_photo_profile FROM piikti_users INNER JOIN piikti_users_meta ON piikti_users_meta.id_utilisateur = piikti_users.id WHERE piikti_users.id = '$id'");
      $reqS -> execute();
      while ($ligne = $reqS -> fetch()) {
          $prenom = $ligne -> prenom;
@@ -128,9 +128,16 @@
       <div class="info-connexion">
           <?php
             if (isset($_SESSION['idsession'])) {
-                ?>
-              <img src="<?php echo $pathPhoto; ?>" class="logoUserProfile" id="userClick">
-                <?php
+                if (!empty($pathPhoto)) {
+                    ?>
+                    <img src="<?php echo $pathPhoto; ?>" class="logoUserProfile" id="userClick">
+
+                    <?php
+                } else {
+                    ?>
+                <img src="img/profil_defaut.jpg" class="logoUserProfile" id="userClick" alt="">
+                    <?php
+                }
             } else {
                 ?>
                 <img src="logo/user.svg" class="logoUser" id="userClick">
@@ -138,7 +145,9 @@
             }
           ?>
           <div class="popupUser" id="myPopup">
-            <?php echo "<p class='accueilUser'>".$prenom." <span class='nomUppercase'>".$nom."</span></p>"; ?>
+            <?php
+            // echo "<p class='accueilUser'>".$prenom." <span class='nomUppercase'>".$nom."</span></p>";
+            ?>
             <div class="blocUserConnect">
                 <?php
                 if (isset($_SESSION['loginsession'])) {
@@ -169,6 +178,5 @@
                 <li><a href="page-createurs.php"><?php echo strtoupper('les createurs') ?></a></li>
             </ul>
         </nav>
-
 
     </header>

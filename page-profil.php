@@ -38,9 +38,7 @@ $userReq -> closeCursor();
 if ($desc == null) {
     $desc  = "";
 }
-if ($pathPhoto == null) {
-    $pathPhoto  = "";
-}
+
 if ($fbLien == null) {
     $fbLien = "";
 }
