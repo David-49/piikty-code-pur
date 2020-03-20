@@ -13,6 +13,21 @@
      $erreurIns = "";
  }
 
+ if (isset($_SESSION['idsession'])) {
+     $id = $_SESSION['idsession'];
+
+     $reqS = $connection -> prepare("SELECT prenom, nom, chemin_photo_profile FROM piikti_users p INNER JOIN piikti_users_meta pM ON pM.id_utilisateur = p.id WHERE p.id = '$id'");
+     $reqS -> execute();
+     while ($ligne = $reqS -> fetch()) {
+         $prenom = $ligne -> prenom;
+         $nom = $ligne -> nom;
+         $pathPhoto = $ligne -> chemin_photo_profile;
+     }
+ } else {
+     $prenom = "";
+     $nom = "";
+ }
+
 ?>
 
 <!DOCTYPE html>
@@ -111,9 +126,19 @@
       </a>
 
       <div class="info-connexion">
-          <img src="logo/user.svg" class="logoUser" id="userClick">
+          <?php
+            if (isset($_SESSION['idsession'])) {
+                ?>
+              <img src="<?php echo $pathPhoto; ?>" class="logoUserProfile" id="userClick">
+                <?php
+            } else {
+                ?>
+                <img src="logo/user.svg" class="logoUser" id="userClick">
+                <?php
+            }
+          ?>
           <div class="popupUser" id="myPopup">
-
+            <?php echo "<p class='accueilUser'>".$prenom." <span class='nomUppercase'>".$nom."</span></p>"; ?>
             <div class="blocUserConnect">
                 <?php
                 if (isset($_SESSION['loginsession'])) {

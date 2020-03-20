@@ -8,9 +8,9 @@
 
     <div class="blocDesc">
         <h1  class="titrePageHome">Créez, publiez, ayez de la visibilité.</h1>
-        <p class="descSite">Grâce à <span>PIIKTI</span>, offrez vous gratuitement
+        <p class="descSite">Grâce à <span class="nomSite">PIIKTI</span>, offrez vous gratuitement
             de la visibilité sur vos créations</p>
-        <a href="#" class="lienDesc">A propos de nous</a>
+        <a href="nous.php" class="lienDesc">A propos de nous</a>
     </div>
 
 </div>

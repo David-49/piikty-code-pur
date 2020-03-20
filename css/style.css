@@ -148,6 +148,13 @@ body {
     cursor: pointer;
 }
 
+.logoUserProfile {
+    height: 50px;
+    cursor: pointer;
+    border-radius: 100%;
+    border: solid 1px #ee6e6b;
+}
+
 /***************************************************************************/
 /*                               Animation pop-up connexion                */
 /***************************************************************************/
@@ -170,7 +177,7 @@ body {
     width: 60%;
     height: 60%;
     margin: auto;
-    margin-top: 32%;
+    margin-top: 26%;
     transform: translateY(-50%);
 }
 
@@ -183,6 +190,18 @@ body {
     padding: 6px;
     width: 100%;
     text-align: center;
+}
+
+.accueilUser {
+    text-align: center;
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 900;
+    margin-top: 30px;
+}
+
+.nomUppercase {
+    text-transform: uppercase;
 }
 
 .popupUser {
@@ -382,8 +401,9 @@ body {
     text-align: center;
 }
 
-.descSite span {
+.nomSite {
     font-style: italic;
+    font-size: 3.9rem;
 }
 
 .lienDesc {
